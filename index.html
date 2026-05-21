@@ -2,101 +2,308 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>DocuTech | Documentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocuTech | Documentation claire et accessible</title>
+  <meta name="description" content="Documentation statique claire et accessible pour projet logiciel ou matériel. Guide de démarrage rapide, exemples de code, captures d'écran et ressources à télécharger.">
+  <meta name="keywords" content="documentation, guide, démarrage rapide, tutoriel, code, téléchargement, projet logiciel, projet matériel">
+  
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
   <style>
-    body { font-family: Arial, sans-serif; background: #f0f4f8; }
-    .hero { background: #1e293b; color: white; padding: 3rem; text-align: center; }
-    .card { background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    button { background: white; border: 1px solid #ccc; border-radius: 2rem; padding: 0.3rem 1rem; cursor: pointer; }
-    pre { background: #1e1e2f; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
-    .logo { height: 40px; margin-right: 10px; vertical-align: middle; }
-    .hero-logo { width: 100px; margin-bottom: 1rem; }
-    .navbar-brand { display: flex; align-items: center; font-weight: bold; font-size: 1.5rem; text-decoration: none; color: #1e293b; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Roboto, system-ui, sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
+    .navbar-brand { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 8px; }
+    .hero-section { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 4rem 0; border-bottom: 4px solid #3b82f6; }
+    .card { border: none; border-radius: 1.25rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08); }
+    pre { background: #1e1e2f; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-size: 0.9rem; }
+    code { background: #e2e8f0; color: #0f172a; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.875rem; }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    .sidebar-link { display: block; padding: 0.6rem 0.75rem; border-radius: 0.75rem; color: #334155; font-weight: 500; transition: all 0.2s; }
+    .sidebar-link:hover { background-color: #eef2ff; color: #1e40af; }
+    .btn-download { background: white; color: #0f172a; border-radius: 2rem; padding: 0.5rem 1.5rem; font-weight: 600; border: 1px solid #cbd5e1; transition: all 0.2s; }
+    .btn-download:hover { background: #f1f5f9; transform: scale(1.02); }
+    .deploy-card { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+    .deploy-card a { color: #ffd700; }
+    @media (max-width: 768px) { .hero-section { padding: 2.5rem 0; } }
   </style>
 </head>
 <body>
 
-<!-- Barre de navigation avec logo -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top py-2">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo DocuTech" class="logo">
-      DocuTech
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" style="height: 32px;">
+      Docu<span class="text-primary">Tech</span>
     </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#guide-demarrage">Guide</a></li>
+        <li class="nav-item"><a class="nav-link" href="#documentation">Documentation</a></li>
+        <li class="nav-item"><a class="nav-link" href="#telechargements">Téléchargements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#deploiement">Déploiement</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<!-- Section hero avec logo -->
-<div class="hero">
-  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo DocuTech" class="hero-logo">
-  <h1>📘 DocuTech</h1>
-  <p>Documentation claire & accessible pour projets logiciels ou matériels</p>
-  <a href="#guide" style="color:white;">Commencer ↓</a>
-</div>
-
-<div class="container" style="max-width: 1000px; margin: auto; padding: 2rem;">
-  <div id="guide" class="card">
-    <h2>🚀 Guide de démarrage rapide</h2>
-    <ol>
-      <li><strong>Prérequis</strong> – Node.js v18+ ou Python 3.10+</li>
-      <li><strong>Installation</strong> – <code>git clone https://github.com/ravietech/docutech.git</code></li>
-      <li><strong>Lancement</strong> – <code>npm start</code></li>
-    </ol>
+<!-- Hero -->
+<section id="accueil" class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" style="width: 70px; margin-bottom: 1rem;">
+        <h1 class="display-4 fw-bold">Documentation claire & accessible</h1>
+        <p class="lead">Pour projets logiciels ou matériels. Guides pas à pas, exemples de code, captures d'écran et ressources téléchargeables.</p>
+        <a href="#guide-demarrage" class="btn btn-light btn-lg px-4 rounded-pill me-2">🚀 Démarrage rapide</a>
+        <a href="#telechargements" class="btn btn-outline-light btn-lg px-4 rounded-pill">📦 Télécharger</a>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="card">
-    <h3>💻 Exemples de code</h3>
-    <pre><code>// JavaScript
-const client = new Client({ apiKey: 'key' });</code></pre>
-    <pre><code># Python
-import board, busio
+<!-- Contenu principal avec sidebar + grille -->
+<div class="container my-5">
+  <div class="row g-4">
+    <!-- Sidebar (sommaire) -->
+    <div class="col-lg-3">
+      <div class="bg-white p-3 rounded-4 shadow-sm sticky-top" style="top: 80px;">
+        <h5 class="mb-3 border-bottom pb-2">📑 Sommaire</h5>
+        <nav class="nav flex-column">
+          <a class="sidebar-link" href="#guide-demarrage">▶ Guide démarrage rapide</a>
+          <a class="sidebar-link" href="#exemples-code">💻 Exemples de code</a>
+          <a class="sidebar-link" href="#captures">📸 Captures d'écran</a>
+          <a class="sidebar-link" href="#telechargements">📦 Téléchargements</a>
+          <a class="sidebar-link" href="#deploiement">🌐 Déploiement</a>
+          <a class="sidebar-link" href="#contribution">🤝 Contribution</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Zone principale -->
+    <div class="col-lg-9">
+      
+      <!-- Guide démarrage -->
+      <div id="guide-demarrage" class="card p-4 p-xl-5 mb-4">
+        <h2>🚀 Guide de démarrage rapide</h2>
+        <p class="text-secondary">Suivez ces étapes pour installer et utiliser DocuTech.</p>
+        <ol class="mt-2">
+          <li><strong>Prérequis</strong> – Node.js v18+ ou Python 3.10+</li>
+          <li><strong>Télécharger les scripts</strong> – Rendez-vous dans la section Téléchargements</li>
+          <li><strong>Exécuter l'installation</strong> – <code>node install.js</code> ou <code>python hardware_setup.py</code></li>
+          <li><strong>Lancer le serveur</strong> – <code>npm start</code></li>
+        </ol>
+      </div>
+
+      <!-- Exemples de code -->
+      <div id="exemples-code" class="card p-4 p-xl-5 mb-4">
+        <h3>💻 Exemples de code</h3>
+        <pre><code>// JavaScript - SDK DocuTech
+const client = new DocuTechClient({
+  apiKey: 'your-api-key',
+  baseUrl: 'https://ravietech.github.io/docutech'
+});
+
+const docs = await client.getDocs('guide');
+console.log(docs);</code></pre>
+        <pre><code># Python - Configuration matériel I2C
+import board, busio, json
 i2c = busio.I2C(board.SCL, board.SDA)
-print(i2c.scan())</code></pre>
-  </div>
+devices = i2c.scan()
+print(f"Périphériques : {[hex(d) for d in devices]}")</code></pre>
+      </div>
 
-  <div class="card">
-    <h3>📦 Téléchargements</h3>
-    <p><button onclick="downloadPDF()">📄 Télécharger PDF</button></p>
-    <p><button onclick="downloadJS()">📜 Télécharger Script JS</button></p>
-    <p><button onclick="downloadPY()">🐍 Télécharger Script Python</button></p>
-  </div>
+      <!-- Captures d'écran -->
+      <div id="captures" class="card p-4 p-xl-5 mb-4">
+        <h3>📸 Captures d'écran</h3>
+        <div class="row g-3">
+          <div class="col-md-6 text-center">
+            <div class="bg-light p-3 rounded-3 border"><i class="bi bi-window-sidebar fs-1"></i><br>Dashboard principal</div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="bg-light p-3 rounded-3 border"><i class="bi bi-file-code fs-1"></i><br>Éditeur de code</div>
+          </div>
+        </div>
+      </div>
 
-  <div class="card" style="background:#1e293b; color:white;">
-    <h3>🌐 Site en ligne</h3>
-    <p>Accessible à : <code style="background:#333; color:#0f0;">https://ravietech.github.io/docutech</code></p>
+      <!-- Téléchargements (avec vrais scripts) -->
+      <div id="telechargements" class="card p-4 p-xl-5 mb-4">
+        <h3>📦 Téléchargements</h3>
+        <div class="list-group">
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-filetype-js text-primary me-2"></i>install.js – Script installation Node.js</span>
+            <button class="btn btn-sm btn-download" onclick="downloadInstallJS()">Télécharger</button>
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-filetype-py text-success me-2"></i>hardware_setup.py – Script configuration matérielle</span>
+            <button class="btn btn-sm btn-download" onclick="downloadHardwarePY()">Télécharger</button>
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-filetype-pdf text-danger me-2"></i>guide_complet.pdf – Documentation détaillée</span>
+            <button class="btn btn-sm btn-download" onclick="downloadPDF()">Télécharger</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Déploiement -->
+      <div id="deploiement" class="card p-4 p-xl-5 mb-4 deploy-card">
+        <h3>🌐 Déployer ce site gratuitement</h3>
+        <div class="row mt-3">
+          <div class="col-md-4"><strong>Netlify</strong><br>Glisser/déposer</div>
+          <div class="col-md-4"><strong>GitHub Pages</strong><br>Settings → Pages → main</div>
+          <div class="col-md-4"><strong>Vercel</strong><br>vercel --prod</div>
+        </div>
+      </div>
+
+      <!-- Contribution -->
+      <div id="contribution" class="card p-4 p-xl-5">
+        <h3>🤝 Contribution</h3>
+        <p>Faciliter l'utilisation et la contribution au projet. Pull requests bienvenues sur <a href="#">GitHub</a>.</p>
+      </div>
+    </div>
   </div>
 </div>
+
+<footer class="text-center text-secondary py-4 border-top">
+  <small>© 2026 DocuTech – Documentation statique | <a href="https://github.com/ravietech/docutech">GitHub</a></small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+// ==================== VRAIS SCRIPTS ====================
+
+function downloadInstallJS() {
+  const content = `#!/usr/bin/env node
+// Script d'installation réel pour DocuTech
+const fs = require('fs');
+const { execSync } = require('child_process');
+const readline = require('readline');
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const ask = q => new Promise(r => rl.question(q, r));
+
+async function main() {
+  console.log('\\x1b[36m🚀 DocuTech - Installation v2.0\\x1b[0m');
+  const project = (await ask('Nom du projet (docutech) : ')) || 'docutech';
+  if (!fs.existsSync(project)) fs.mkdirSync(project);
+  process.chdir(project);
+  
+  const pkg = { name: project, version: '1.0.0', scripts: { start: 'node server.js' }, dependencies: { express: '^4.18.2' } };
+  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+  fs.writeFileSync('server.js', \`const express=require('express');const app=express();app.get('/',(r,q)=>q.send('DocuTech OK'));app.listen(3000,()=>console.log('http://localhost:3000'));\`);
+  fs.mkdirSync('public', { recursive: true });
+  console.log('📦 Installation des dépendances...');
+  execSync('npm install', { stdio: 'inherit' });
+  console.log('✅ Terminé. Lancez : npm start');
+  rl.close();
+}
+main();`;
+  download(content, 'install.js', 'application/javascript');
+}
+
+function downloadHardwarePY() {
+  const content = `#!/usr/bin/env python3
+# Script matériel DocuTech - Détection I2C, GPIO, réseau
+import sys, json, platform, socket
+from datetime import datetime
+
+def main():
+    print("🔧 DocuTech - Configuration matérielle")
+    system = platform.system()
+    is_raspberry = False
+    try:
+        with open('/proc/device-tree/model') as f:
+            is_raspberry = 'Raspberry' in f.read()
+    except: pass
+    
+    i2c_devices = []
+    if system == 'Linux':
+        try:
+            import board, busio
+            i2c = busio.I2C(board.SCL, board.SDA)
+            i2c_devices = [hex(d) for d in i2c.scan()]
+            print(f"✓ I2C : {i2c_devices}")
+        except: print("⚠ I2C non disponible")
+    
+    gpio_pins = []
+    if is_raspberry:
+        try:
+            import RPi.GPIO as GPIO
+            GPIO.setmode(GPIO.BCM)
+            for pin in [17,18,22,23,24,25]:
+                GPIO.setup(pin, GPIO.OUT)
+                gpio_pins.append(pin)
+            GPIO.cleanup()
+            print(f"✓ GPIO : {gpio_pins}")
+        except: pass
+    
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        internet = socket.create_connection(("8.8.8.8", 53), timeout=2) is not None
+    except: ip, internet = None, False
+    
+    config = {
+        "docutech_hardware": {
+            "version": "2.0",
+            "generated_at": datetime.now().isoformat(),
+            "system": {"os": system, "is_raspberry": is_raspberry},
+            "i2c": {"devices": i2c_devices},
+            "gpio": {"pins": gpio_pins},
+            "network": {"local_ip": ip, "internet": internet}
+        }
+    }
+    with open("hardware_config.json", "w") as f:
+        json.dump(config, f, indent=2)
+    print("✅ hardware_config.json généré")
+
+if __name__ == "__main__":
+    main()`;
+  download(content, 'hardware_setup.py', 'text/x-python');
+}
+
 function downloadPDF() {
-  const content = `%PDF-1.4\n1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj\n3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj\n4 0 obj << /Length 50 >> stream\nBT /F1 24 Tf 100 700 Td (Guide DocuTech) Tj ET\nendstream endobj\nxref 0 5 0000000000 65535 f 0000000009 00000 n 0000000058 00000 n 0000000115 00000 n 0000000190 00000 n\ntrailer << /Size 5 /Root 1 0 R >> startxref 340 %%EOF`;
-  const blob = new Blob([content], {type: 'application/pdf'});
+  const content = `%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj
+4 0 obj << /Length 200 >> stream
+BT /F1 24 Tf 100 750 Td (Guide DocuTech) Tj ET
+BT /F1 14 Tf 100 700 Td (1. Installation : node install.js) Tj ET
+BT /F1 14 Tf 100 660 Td (2. Hardware : python hardware_setup.py) Tj ET
+BT /F1 14 Tf 100 620 Td (3. Lancer : npm start) Tj ET
+endstream endobj
+xref 0 5 0000000000 65535 f 0000000009 00000 n 0000000058 00000 n 0000000115 00000 n 0000000190 00000 n
+trailer << /Size 5 /Root 1 0 R >> startxref 400 %%EOF`;
+  download(content, 'guide_docutech.pdf', 'application/pdf');
+}
+
+function download(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'guide.pdf';
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(a.href);
 }
-function downloadJS() {
-  const content = `console.log('Installation...');\nconst fs = require('fs');\nfs.mkdirSync('src', {recursive: true});\nconsole.log('OK');`;
-  const blob = new Blob([content], {type: 'application/javascript'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'install.js';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-function downloadPY() {
-  const content = `import board, busio, json\ni2c = busio.I2C(board.SCL, board.SDA)\nprint(i2c.scan())`;
-  const blob = new Blob([content], {type: 'text/x-python'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'hardware.py';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
+
+// Scroll fluide
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
 </script>
 </body>
 </html>
