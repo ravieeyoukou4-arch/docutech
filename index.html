@@ -3,52 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocuTech | Documentation claire et accessible</title>
-  <meta name="description" content="Documentation statique claire et accessible pour projet logiciel ou matériel. Guide de démarrage rapide, exemples de code, captures d'écran et ressources à télécharger.">
-  <meta name="keywords" content="documentation, guide, démarrage rapide, tutoriel, code, téléchargement, projet logiciel, projet matériel">
+  <title>DocuTech | Documentation professionnelle</title>
+  <meta name="description" content="Documentation claire et accessible pour projets logiciels ou matériels. Guides, exemples de code, ressources téléchargeables.">
+  <meta name="author" content="RavieTech">
   
-  <!-- Bootstrap 5 -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+  
+  <!-- Google Fonts + Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Roboto, system-ui, sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
+    
+    /* Navbar */
+    .navbar { backdrop-filter: blur(10px); background: rgba(255,255,255,0.95) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
     .navbar-brand { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 8px; }
-    .hero-section { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 4rem 0; border-bottom: 4px solid #3b82f6; }
-    .card { border: none; border-radius: 1.25rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08); }
-    pre { background: #1e1e2f; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-size: 0.9rem; }
-    code { background: #e2e8f0; color: #0f172a; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.875rem; }
+    .nav-link { font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: #3b82f6 !important; }
+    
+    /* Hero */
+    .hero-section { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); color: white; padding: 5rem 0; position: relative; overflow: hidden; }
+    .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://www.transparenttextures.com/patterns/circuit-board.png'); opacity: 0.05; pointer-events: none; }
+    .hero-logo { width: 80px; margin-bottom: 1.5rem; animation: fadeInUp 0.6s ease; }
+    .hero-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em; animation: fadeInUp 0.6s ease 0.1s both; }
+    .hero-subtitle { font-size: 1.25rem; opacity: 0.9; animation: fadeInUp 0.6s ease 0.2s both; }
+    .hero-buttons { animation: fadeInUp 0.6s ease 0.3s both; }
+    
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    /* Cartes */
+    .card { border: none; border-radius: 1.5rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 25px 30px -12px rgba(0,0,0,0.15); }
+    .card-header-custom { border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    
+    /* Code */
+    pre { background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-size: 0.85rem; font-family: 'Fira Code', monospace; margin: 1rem 0; border: 1px solid #334155; }
+    code { background: #e2e8f0; color: #0f172a; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; }
     pre code { background: transparent; color: inherit; padding: 0; }
-    .sidebar-link { display: block; padding: 0.6rem 0.75rem; border-radius: 0.75rem; color: #334155; font-weight: 500; transition: all 0.2s; }
-    .sidebar-link:hover { background-color: #eef2ff; color: #1e40af; }
-    .btn-download { background: white; color: #0f172a; border-radius: 2rem; padding: 0.5rem 1.5rem; font-weight: 600; border: 1px solid #cbd5e1; transition: all 0.2s; }
-    .btn-download:hover { background: #f1f5f9; transform: scale(1.02); }
-    .deploy-card { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-    .deploy-card a { color: #ffd700; }
-    @media (max-width: 768px) { .hero-section { padding: 2.5rem 0; } }
+    
+    /* Sidebar */
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.7rem 1rem; border-radius: 0.75rem; color: #334155; font-weight: 500; transition: all 0.2s; }
+    .sidebar-link:hover { background: #eef2ff; color: #2563eb; transform: translateX(4px); }
+    .sticky-sidebar { position: sticky; top: 90px; }
+    
+    /* Boutons */
+    .btn-primary-custom { background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; border-radius: 2rem; padding: 0.7rem 1.8rem; font-weight: 600; transition: all 0.2s; color: white; }
+    .btn-primary-custom:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px #2563eb; background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .btn-outline-custom { background: transparent; border: 2px solid white; border-radius: 2rem; padding: 0.7rem 1.8rem; font-weight: 600; transition: all 0.2s; color: white; }
+    .btn-outline-custom:hover { background: white; color: #0f172a; transform: scale(1.02); }
+    .btn-download { background: white; border: 1px solid #e2e8f0; border-radius: 2rem; padding: 0.5rem 1.5rem; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .btn-download:hover { background: #f8fafc; border-color: #2563eb; transform: translateY(-2px); }
+    
+    /* Download section */
+    .download-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 1.5rem; padding: 2rem; color: white; }
+    .download-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 1rem; padding: 1.5rem; transition: all 0.3s; text-align: center; }
+    .download-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-5px); }
+    
+    /* Footer */
+    .footer { background: #0f172a; color: #94a3b8; padding: 3rem 0 2rem; margin-top: 4rem; }
+    .footer a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
+    .footer a:hover { color: white; }
+    .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.2s; margin-right: 0.5rem; }
+    .social-icon:hover { background: #2563eb; transform: translateY(-3px); }
+    
+    @media (max-width: 768px) { .hero-title { font-size: 2rem; } .hero-section { padding: 3rem 0; } }
   </style>
 </head>
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top py-2">
+<nav class="navbar navbar-expand-lg sticky-top py-3">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" style="height: 32px;">
-      Docu<span class="text-primary">Tech</span>
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" style="height: 35px;">
+      Docu<span style="color:#2563eb">Tech</span>
     </a>
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav ms-auto gap-2">
+      <ul class="navbar-nav ms-auto gap-3">
         <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="#guide-demarrage">Guide</a></li>
-        <li class="nav-item"><a class="nav-link" href="#documentation">Documentation</a></li>
-        <li class="nav-item"><a class="nav-link" href="#telechargements">Téléchargements</a></li>
-        <li class="nav-item"><a class="nav-link" href="#deploiement">Déploiement</a></li>
+        <li class="nav-item"><a class="nav-link" href="#guide">Guide</a></li>
+        <li class="nav-item"><a class="nav-link" href="#code">Code</a></li>
+        <li class="nav-item"><a class="nav-link" href="#downloads">Téléchargements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#deploy">Déploiement</a></li>
       </ul>
     </div>
   </div>
@@ -56,133 +99,202 @@
 
 <!-- Hero -->
 <section id="accueil" class="hero-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" style="width: 70px; margin-bottom: 1rem;">
-        <h1 class="display-4 fw-bold">Documentation claire & accessible</h1>
-        <p class="lead">Pour projets logiciels ou matériels. Guides pas à pas, exemples de code, captures d'écran et ressources téléchargeables.</p>
-        <a href="#guide-demarrage" class="btn btn-light btn-lg px-4 rounded-pill me-2">🚀 Démarrage rapide</a>
-        <a href="#telechargements" class="btn btn-outline-light btn-lg px-4 rounded-pill">📦 Télécharger</a>
-      </div>
+  <div class="container text-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="DocuTech" class="hero-logo">
+    <h1 class="hero-title">Documentation <span style="color:#3b82f6">claire & accessible</span></h1>
+    <p class="hero-subtitle mt-3 mx-auto" style="max-width: 600px;">Pour projets logiciels ou matériels. Guides, exemples de code et ressources téléchargeables.</p>
+    <div class="hero-buttons mt-4">
+      <a href="#guide" class="btn btn-primary-custom me-3"><i class="bi bi-rocket-takeoff me-2"></i>Commencer</a>
+      <a href="#downloads" class="btn btn-outline-custom"><i class="bi bi-download me-2"></i>Télécharger</a>
     </div>
   </div>
 </section>
 
-<!-- Contenu principal avec sidebar + grille -->
 <div class="container my-5">
-  <div class="row g-4">
-    <!-- Sidebar (sommaire) -->
+  <div class="row g-5">
+    <!-- Sidebar -->
     <div class="col-lg-3">
-      <div class="bg-white p-3 rounded-4 shadow-sm sticky-top" style="top: 80px;">
-        <h5 class="mb-3 border-bottom pb-2">📑 Sommaire</h5>
+      <div class="bg-white p-3 rounded-3 shadow-sm sticky-sidebar">
+        <h5 class="mb-3 pb-2 border-bottom">📖 Sommaire</h5>
         <nav class="nav flex-column">
-          <a class="sidebar-link" href="#guide-demarrage">▶ Guide démarrage rapide</a>
-          <a class="sidebar-link" href="#exemples-code">💻 Exemples de code</a>
-          <a class="sidebar-link" href="#captures">📸 Captures d'écran</a>
-          <a class="sidebar-link" href="#telechargements">📦 Téléchargements</a>
-          <a class="sidebar-link" href="#deploiement">🌐 Déploiement</a>
-          <a class="sidebar-link" href="#contribution">🤝 Contribution</a>
+          <a class="sidebar-link" href="#guide"><i class="bi bi-play-circle"></i> Guide démarrage</a>
+          <a class="sidebar-link" href="#code"><i class="bi bi-code-slash"></i> Exemples de code</a>
+          <a class="sidebar-link" href="#screenshots"><i class="bi bi-camera"></i> Captures</a>
+          <a class="sidebar-link" href="#downloads"><i class="bi bi-cloud-arrow-down"></i> Téléchargements</a>
+          <a class="sidebar-link" href="#deploy"><i class="bi bi-globe"></i> Déploiement</a>
+          <a class="sidebar-link" href="#contribute"><i class="bi bi-people"></i> Contribution</a>
         </nav>
       </div>
     </div>
 
-    <!-- Zone principale -->
+    <!-- Main content -->
     <div class="col-lg-9">
       
-      <!-- Guide démarrage -->
-      <div id="guide-demarrage" class="card p-4 p-xl-5 mb-4">
-        <h2>🚀 Guide de démarrage rapide</h2>
-        <p class="text-secondary">Suivez ces étapes pour installer et utiliser DocuTech.</p>
-        <ol class="mt-2">
-          <li><strong>Prérequis</strong> – Node.js v18+ ou Python 3.10+</li>
-          <li><strong>Télécharger les scripts</strong> – Rendez-vous dans la section Téléchargements</li>
-          <li><strong>Exécuter l'installation</strong> – <code>node install.js</code> ou <code>python hardware_setup.py</code></li>
-          <li><strong>Lancer le serveur</strong> – <code>npm start</code></li>
-        </ol>
+      <!-- Guide -->
+      <div id="guide" class="card p-4 p-xl-5 mb-4">
+        <div class="card-header-custom">
+          <h2><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Guide de démarrage rapide</h2>
+        </div>
+        <p>Suivez ces 3 étapes pour installer et utiliser DocuTech :</p>
+        <div class="row g-3 mt-2">
+          <div class="col-md-4">
+            <div class="bg-light p-3 rounded-3 text-center">
+              <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">1</div>
+              <h6 class="mt-2">Prérequis</h6>
+              <small>Node.js v18+ ou Python 3.10+</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-light p-3 rounded-3 text-center">
+              <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">2</div>
+              <h6 class="mt-2">Télécharger</h6>
+              <small>Récupérez les scripts ci-dessous</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-light p-3 rounded-3 text-center">
+              <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">3</div>
+              <h6 class="mt-2">Lancer</h6>
+              <small><code>npm start</code> ou <code>python hardware_setup.py</code></small>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Exemples de code -->
-      <div id="exemples-code" class="card p-4 p-xl-5 mb-4">
-        <h3>💻 Exemples de code</h3>
-        <pre><code>// JavaScript - SDK DocuTech
+      <!-- Code examples -->
+      <div id="code" class="card p-4 p-xl-5 mb-4">
+        <div class="card-header-custom">
+          <h3><i class="bi bi-code-slash me-2 text-primary"></i>Exemples de code</h3>
+        </div>
+        <pre><code>// JavaScript - Utilisation du SDK DocuTech
+import { DocuTechClient } from 'docutech-sdk';
+
 const client = new DocuTechClient({
   apiKey: 'your-api-key',
   baseUrl: 'https://ravietech.github.io/docutech'
 });
 
-const docs = await client.getDocs('guide');
-console.log(docs);</code></pre>
+async function init() {
+  const docs = await client.getDocs('guide');
+  console.log(docs);
+}</code></pre>
         <pre><code># Python - Configuration matériel I2C
-import board, busio, json
+import board
+import busio
+import json
+
 i2c = busio.I2C(board.SCL, board.SDA)
 devices = i2c.scan()
-print(f"Périphériques : {[hex(d) for d in devices]}")</code></pre>
+print(f"Périphériques détectés : {[hex(d) for d in devices]}")</code></pre>
       </div>
 
-      <!-- Captures d'écran -->
-      <div id="captures" class="card p-4 p-xl-5 mb-4">
-        <h3>📸 Captures d'écran</h3>
+      <!-- Screenshots -->
+      <div id="screenshots" class="card p-4 p-xl-5 mb-4">
+        <div class="card-header-custom">
+          <h3><i class="bi bi-images me-2 text-success"></i>Captures d'écran</h3>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 text-center">
+            <div class="bg-light p-4 rounded-3 border"><i class="bi bi-window-sidebar fs-1 text-secondary"></i><br><strong>Dashboard principal</strong><br><small>Interface d'administration</small></div>
+          </div>
+          <div class="col-md-6 text-center">
+            <div class="bg-light p-4 rounded-3 border"><i class="bi bi-file-code fs-1 text-secondary"></i><br><strong>Éditeur de code</strong><br><small>Exemples interactifs</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Downloads -->
+      <div id="downloads" class="download-section mb-4">
+        <h3 class="mb-3"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Téléchargements officiels</h3>
         <div class="row g-3">
-          <div class="col-md-6 text-center">
-            <div class="bg-light p-3 rounded-3 border"><i class="bi bi-window-sidebar fs-1"></i><br>Dashboard principal</div>
+          <div class="col-md-4">
+            <div class="download-card">
+              <i class="bi bi-filetype-js fs-1"></i>
+              <h5 class="mt-2">install.js</h5>
+              <p class="small">Script installation Node.js</p>
+              <button class="btn btn-light btn-sm rounded-pill px-3" onclick="downloadInstallJS()"><i class="bi bi-download"></i> Télécharger</button>
+            </div>
           </div>
-          <div class="col-md-6 text-center">
-            <div class="bg-light p-3 rounded-3 border"><i class="bi bi-file-code fs-1"></i><br>Éditeur de code</div>
+          <div class="col-md-4">
+            <div class="download-card">
+              <i class="bi bi-filetype-py fs-1"></i>
+              <h5 class="mt-2">hardware_setup.py</h5>
+              <p class="small">Script configuration matérielle</p>
+              <button class="btn btn-light btn-sm rounded-pill px-3" onclick="downloadHardwarePY()"><i class="bi bi-download"></i> Télécharger</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="download-card">
+              <i class="bi bi-filetype-pdf fs-1"></i>
+              <h5 class="mt-2">guide.pdf</h5>
+              <p class="small">Documentation complète</p>
+              <button class="btn btn-light btn-sm rounded-pill px-3" onclick="downloadPDF()"><i class="bi bi-download"></i> Télécharger</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Téléchargements (avec vrais scripts) -->
-      <div id="telechargements" class="card p-4 p-xl-5 mb-4">
-        <h3>📦 Téléchargements</h3>
-        <div class="list-group">
-          <div class="list-group-item d-flex justify-content-between align-items-center">
-            <span><i class="bi bi-filetype-js text-primary me-2"></i>install.js – Script installation Node.js</span>
-            <button class="btn btn-sm btn-download" onclick="downloadInstallJS()">Télécharger</button>
-          </div>
-          <div class="list-group-item d-flex justify-content-between align-items-center">
-            <span><i class="bi bi-filetype-py text-success me-2"></i>hardware_setup.py – Script configuration matérielle</span>
-            <button class="btn btn-sm btn-download" onclick="downloadHardwarePY()">Télécharger</button>
-          </div>
-          <div class="list-group-item d-flex justify-content-between align-items-center">
-            <span><i class="bi bi-filetype-pdf text-danger me-2"></i>guide_complet.pdf – Documentation détaillée</span>
-            <button class="btn btn-sm btn-download" onclick="downloadPDF()">Télécharger</button>
-          </div>
+      <!-- Deploy -->
+      <div id="deploy" class="card p-4 p-xl-5 mb-4" style="background: #0f172a; color: white;">
+        <div class="card-header-custom border-secondary">
+          <h3><i class="bi bi-globe me-2 text-info"></i>Déployer ce site gratuitement</h3>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3"><i class="bi bi-gem fs-2"></i><br><strong>Netlify</strong><br><small>Glisser/déposer</small></div>
+          <div class="col-md-3"><i class="bi bi-github fs-2"></i><br><strong>GitHub Pages</strong><br><small>Settings → Pages</small></div>
+          <div class="col-md-3"><i class="bi bi-lightning fs-2"></i><br><strong>Vercel</strong><br><small>vercel --prod</small></div>
+          <div class="col-md-3"><i class="bi bi-cloud fs-2"></i><br><strong>Cloudflare</strong><br><small>Pages</small></div>
         </div>
       </div>
 
-      <!-- Déploiement -->
-      <div id="deploiement" class="card p-4 p-xl-5 mb-4 deploy-card">
-        <h3>🌐 Déployer ce site gratuitement</h3>
-        <div class="row mt-3">
-          <div class="col-md-4"><strong>Netlify</strong><br>Glisser/déposer</div>
-          <div class="col-md-4"><strong>GitHub Pages</strong><br>Settings → Pages → main</div>
-          <div class="col-md-4"><strong>Vercel</strong><br>vercel --prod</div>
+      <!-- Contribute -->
+      <div id="contribute" class="card p-4 p-xl-5">
+        <div class="card-header-custom">
+          <h3><i class="bi bi-puzzle-fill me-2 text-purple"></i>Contribuer au projet</h3>
         </div>
-      </div>
-
-      <!-- Contribution -->
-      <div id="contribution" class="card p-4 p-xl-5">
-        <h3>🤝 Contribution</h3>
-        <p>Faciliter l'utilisation et la contribution au projet. Pull requests bienvenues sur <a href="#">GitHub</a>.</p>
+        <p>Faciliter l'utilisation et la contribution. Pull requests bienvenues sur GitHub.</p>
+        <a href="https://github.com/ravietech/docutech" class="btn btn-outline-secondary rounded-pill w-auto align-self-start"><i class="bi bi-star me-1"></i> Star sur GitHub</a>
       </div>
     </div>
   </div>
 </div>
 
-<footer class="text-center text-secondary py-4 border-top">
-  <small>© 2026 DocuTech – Documentation statique | <a href="https://github.com/ravietech/docutech">GitHub</a></small>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5 class="text-white">DocuTech</h5>
+        <p>Documentation claire et accessible pour tous vos projets.</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Liens rapides</h6>
+        <ul class="list-unstyled">
+          <li><a href="#guide">Guide</a></li>
+          <li><a href="#downloads">Téléchargements</a></li>
+          <li><a href="#deploy">Déploiement</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6>Suivez-nous</h6>
+        <div>
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="bg-secondary mt-4">
+    <div class="text-center small">© 2026 DocuTech – Créé avec <i class="bi bi-heart-fill text-danger"></i> par RavieTech</div>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-// ==================== VRAIS SCRIPTS ====================
-
 function downloadInstallJS() {
   const content = `#!/usr/bin/env node
-// Script d'installation réel pour DocuTech
+// DocuTech - Script d'installation réel
 const fs = require('fs');
 const { execSync } = require('child_process');
 const readline = require('readline');
@@ -195,10 +307,9 @@ async function main() {
   const project = (await ask('Nom du projet (docutech) : ')) || 'docutech';
   if (!fs.existsSync(project)) fs.mkdirSync(project);
   process.chdir(project);
-  
   const pkg = { name: project, version: '1.0.0', scripts: { start: 'node server.js' }, dependencies: { express: '^4.18.2' } };
   fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
-  fs.writeFileSync('server.js', \`const express=require('express');const app=express();app.get('/',(r,q)=>q.send('DocuTech OK'));app.listen(3000,()=>console.log('http://localhost:3000'));\`);
+  fs.writeFileSync('server.js', \`const express=require('express');const app=express();app.get('/',(r,q)=>q.send('DocuTech OK'));app.listen(3000,()=>console.log('✅ Serveur sur http://localhost:3000'));\`);
   fs.mkdirSync('public', { recursive: true });
   console.log('📦 Installation des dépendances...');
   execSync('npm install', { stdio: 'inherit' });
@@ -211,7 +322,7 @@ main();`;
 
 function downloadHardwarePY() {
   const content = `#!/usr/bin/env python3
-# Script matériel DocuTech - Détection I2C, GPIO, réseau
+# DocuTech - Configuration matérielle
 import sys, json, platform, socket
 from datetime import datetime
 
@@ -266,7 +377,6 @@ def main():
     with open("hardware_config.json", "w") as f:
         json.dump(config, f, indent=2)
     print("✅ hardware_config.json généré")
-
 if __name__ == "__main__":
     main()`;
   download(content, 'hardware_setup.py', 'text/x-python');
@@ -297,13 +407,5 @@ function download(content, filename, mime) {
   URL.revokeObjectURL(a.href);
 }
 
-// Scroll fluide
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
-</script>
-</body>
-</html>
+  a.addEventListener('click', fun
