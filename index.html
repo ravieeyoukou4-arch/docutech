@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocuTech | Plateforme de documentation moderne</title>
-  <meta name="description" content="Documentation technique nouvelle génération. Dashboard analytics, API moderne, exemples de code, et ressources téléchargeables.">
+  <title>DocuTech | Documentation technique moderne</title>
+  <meta name="description" content="Documentation technique nouvelle génération. Dashboard analytics, API moderne, exemples de code, et contact support.">
   <meta name="author" content="RavieTech">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
-  <!-- Chart.js pour les graphiques -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #f4f6fa; color: #0a0b1e; scroll-behavior: smooth; }
     
-    /* Navigation ultra moderne */
+    /* Navigation */
     .navbar { background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.03); padding: 1rem 0; }
     .navbar-brand { font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #2563eb, #7c3aed, #ec489a); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nav-link { font-weight: 500; color: #4b5563 !important; margin: 0 0.25rem; transition: all 0.2s; }
     .nav-link:hover { color: #2563eb !important; background: #eef2ff; border-radius: 0.5rem; }
     
-    /* Hero section avec effet 3D */
+    /* Hero */
     .hero { background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 50%, #0f0c29 100%); color: white; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(37,99,235,0.2), transparent); top: -50%; left: -50%; animation: pulse 8s ease infinite; }
     @keyframes pulse { 0%,100%{ opacity:0.5; transform:scale(1);} 50%{ opacity:1; transform:scale(1.05);} }
@@ -38,7 +38,7 @@
     @keyframes float { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
     .hero h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
     
-    /* Cartes dashboard */
+    /* Cartes stats */
     .stat-card { background: white; border-radius: 1.5rem; padding: 1.25rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s; }
     .stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1); }
     .stat-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 1rem; display: flex; align-items: center; justify-content: center; }
@@ -46,33 +46,51 @@
     /* Graph container */
     .chart-container { background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
     
-    /* Sidebar moderne */
+    /* Sidebar */
     .sidebar { position: sticky; top: 90px; background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
-    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.7rem 0.85rem; border-radius: 0.75rem; color: #374151; font-weight: 500; transition: all 0.2s; }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.7rem 0.85rem; border-radius: 0.75rem; color: #374151; font-weight: 500; transition: all 0.2s; text-decoration: none; }
     .sidebar-link:hover { background: linear-gradient(135deg, #eef2ff, #e0e7ff); color: #2563eb; transform: translateX(6px); }
     
-    /* Code blocks */
+    /* Code */
     pre { background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.85rem; border: 1px solid #334155; }
     code { background: #eef2ff; color: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.85rem; }
     pre code { background: transparent; color: inherit; padding: 0; }
+    
+    /* Formulaire contact */
+    .contact-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
+    .contact-form { padding: 2rem; }
+    .contact-info { background: linear-gradient(135deg, #2563eb, #7c3aed); padding: 2rem; color: white; }
+    .form-control, .form-select { border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; transition: all 0.2s; }
+    .form-control:focus, .form-select:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .btn-submit { background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; border-radius: 2rem; padding: 0.75rem 2rem; font-weight: 600; transition: all 0.2s; color: white; }
+    .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px rgba(37,99,235,0.4); }
     
     /* Timeline */
     .timeline-item { display: flex; gap: 1rem; margin-bottom: 1rem; padding: 0.75rem; border-radius: 1rem; transition: all 0.2s; }
     .timeline-item:hover { background: #f8fafc; }
     
     /* Download cards */
-    .download-card { background: white; border-radius: 1rem; padding: 1.25rem; text-align: center; transition: all 0.3s; border: 1px solid #eef2ff; }
+    .download-card { background: white; border-radius: 1rem; padding: 1.25rem; text-align: center; transition: all 0.3s; border: 1px solid #eef2ff; text-decoration: none; display: block; }
     .download-card:hover { border-color: #2563eb; transform: translateY(-6px); box-shadow: 0 20px 25px -12px rgba(37,99,235,0.2); }
     .btn-download { background: #f1f5f9; border: none; border-radius: 2rem; padding: 0.6rem 1.3rem; font-weight: 600; transition: all 0.2s; }
     .btn-download:hover { background: #2563eb; color: white; transform: scale(1.02); }
     
     /* Footer */
     .footer { background: #0f0c29; color: #94a3b8; padding: 2.5rem 0; margin-top: 3rem; }
+    .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.2s; margin: 0 0.25rem; }
+    .social-icon:hover { background: #2563eb; transform: translateY(-3px); }
     
-    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .sidebar { position: relative; top: 0; margin-bottom: 2rem; } }
+    /* Toast notification */
+    .toast-notif { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #10b981; color: white; padding: 1rem 1.5rem; border-radius: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .toast-notif.show { opacity: 1; }
+    
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .sidebar { position: relative; top: 0; margin-bottom: 2rem; } .contact-info { text-align: center; } }
   </style>
 </head>
 <body>
+
+<!-- Toast notification -->
+<div id="toastMsg" class="toast-notif">✅ Message envoyé !</div>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg sticky-top">
@@ -87,21 +105,21 @@
         <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="#docs">Documentation</a></li>
         <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="#resources">Ressources</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Hero section -->
+<!-- Hero -->
 <section id="accueil" class="hero text-center">
   <div class="container">
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="DocuTech" class="hero-logo">
     <h1>Documentation technique nouvelle génération</h1>
-    <p class="lead mt-3 opacity-75">Dashboard analytics • API moderne • Code examples • Hardware ready</p>
+    <p class="lead mt-3 opacity-75">Dashboard analytics • API moderne • Support dédié</p>
     <div class="mt-4">
-      <a href="#dashboard" class="btn btn-light rounded-pill px-4 py-2 me-2 fw-semibold">📊 Voir le dashboard</a>
-      <a href="#resources" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold">📦 Télécharger</a>
+      <a href="#dashboard" class="btn btn-light rounded-pill px-4 py-2 me-2 fw-semibold">📊 Dashboard</a>
+      <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold">💬 Contact support</a>
     </div>
   </div>
 </section>
@@ -109,7 +127,7 @@
 <div class="container my-5">
   <div class="row g-4">
     
-    <!-- Sidebar navigation -->
+    <!-- Sidebar -->
     <div class="col-lg-3">
       <div class="sidebar">
         <h5 class="fw-bold mb-3">📖 Navigation</h5>
@@ -121,6 +139,7 @@
           <a class="sidebar-link" href="#examples"><i class="bi bi-file-code"></i> Code examples</a>
           <a class="sidebar-link" href="#hardware"><i class="bi bi-motherboard"></i> Hardware setup</a>
           <a class="sidebar-link" href="#resources"><i class="bi bi-cloud-arrow-down"></i> Téléchargements</a>
+          <a class="sidebar-link" href="#contact"><i class="bi bi-envelope"></i> Contact support</a>
         </nav>
       </div>
     </div>
@@ -128,96 +147,59 @@
     <!-- Main content -->
     <div class="col-lg-9">
       
-      <!-- DASHBOARD SECTION avec graphiques réels -->
+      <!-- DASHBOARD -->
       <div id="dashboard">
         <h2 class="fw-bold mb-4"><i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard</h2>
         
-        <!-- Statistiques cartes -->
         <div class="row g-3 mb-4">
           <div class="col-md-3">
             <div class="stat-card d-flex align-items-center justify-content-between">
-              <div>
-                <div class="text-muted small">Documents</div>
-                <div class="fs-2 fw-bold">1,284</div>
-                <div class="text-success small"><i class="bi bi-arrow-up"></i> +12%</div>
-              </div>
+              <div><div class="text-muted small">Documents</div><div class="fs-2 fw-bold">1,284</div><div class="text-success small"><i class="bi bi-arrow-up"></i> +12%</div></div>
               <div class="stat-icon"><i class="bi bi-file-text fs-3 text-primary"></i></div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="stat-card d-flex align-items-center justify-content-between">
-              <div>
-                <div class="text-muted small">Téléchargements</div>
-                <div class="fs-2 fw-bold">8,942</div>
-                <div class="text-success small"><i class="bi bi-arrow-up"></i> +23%</div>
-              </div>
+              <div><div class="text-muted small">Téléchargements</div><div class="fs-2 fw-bold">8,942</div><div class="text-success small"><i class="bi bi-arrow-up"></i> +23%</div></div>
               <div class="stat-icon"><i class="bi bi-download fs-3 text-success"></i></div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="stat-card d-flex align-items-center justify-content-between">
-              <div>
-                <div class="text-muted small">API requêtes</div>
-                <div class="fs-2 fw-bold">156k</div>
-                <div class="text-success small"><i class="bi bi-arrow-up"></i> +8%</div>
-              </div>
+              <div><div class="text-muted small">API requêtes</div><div class="fs-2 fw-bold">156k</div><div class="text-success small"><i class="bi bi-arrow-up"></i> +8%</div></div>
               <div class="stat-icon"><i class="bi bi-cloud-check fs-3 text-info"></i></div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="stat-card d-flex align-items-center justify-content-between">
-              <div>
-                <div class="text-muted small">Utilisateurs actifs</div>
-                <div class="fs-2 fw-bold">342</div>
-                <div class="text-danger small"><i class="bi bi-arrow-down"></i> -2%</div>
-              </div>
-              <div class="stat-icon"><i class="bi bi-people fs-3 text-warning"></i></div>
+              <div><div class="text-muted small">Tickets support</div><div class="fs-2 fw-bold">12</div><div class="text-success small"><i class="bi bi-check-circle"></i> 8 résolus</div></div>
+              <div class="stat-icon"><i class="bi bi-headset fs-3 text-warning"></i></div>
             </div>
           </div>
         </div>
         
-        <!-- Graphiques -->
         <div id="stats" class="row g-3 mb-4">
           <div class="col-md-7">
             <div class="chart-container">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="fw-bold mb-0">📈 Activité API (30 jours)</h6>
-                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill">+18% vs mois dernier</span>
-              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3"><h6 class="fw-bold mb-0">📈 Activité API (30 jours)</h6><span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill">+18%</span></div>
               <canvas id="apiChart" height="200"></canvas>
             </div>
           </div>
           <div class="col-md-5">
             <div class="chart-container">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="fw-bold mb-0">📊 Répartition</h6>
-                <i class="bi bi-pie-chart text-muted"></i>
-              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3"><h6 class="fw-bold mb-0">📊 Répartition</h6><i class="bi bi-pie-chart text-muted"></i></div>
               <canvas id="pieChart" height="180"></canvas>
-              <div class="mt-3 small text-muted text-center">
-                <span class="badge bg-primary rounded-pill me-1">●</span> Documentation
-                <span class="badge bg-success rounded-pill ms-2 me-1">●</span> API
-                <span class="badge bg-warning rounded-pill ms-2 me-1">●</span> Hardware
-              </div>
+              <div class="mt-3 small text-muted text-center"><span class="badge bg-primary rounded-pill me-1">●</span> Documentation <span class="badge bg-success rounded-pill ms-2 me-1">●</span> API <span class="badge bg-warning rounded-pill ms-2 me-1">●</span> Hardware</div>
             </div>
           </div>
         </div>
         
-        <!-- Activité récente -->
         <div class="chart-container mb-4">
           <h6 class="fw-bold mb-3"><i class="bi bi-clock-history me-2"></i>Activité récente</h6>
-          <div class="timeline-item">
-            <i class="bi bi-file-text text-primary mt-1"></i>
-            <div><strong>Guide d'installation</strong> mis à jour • il y a 2 heures</div>
-          </div>
-          <div class="timeline-item">
-            <i class="bi bi-download text-success mt-1"></i>
-            <div><strong>install.js</strong> téléchargé 47 fois aujourd'hui</div>
-          </div>
-          <div class="timeline-item">
-            <i class="bi bi-code-square text-info mt-1"></i>
-            <div><strong>API v2.0</strong> déployée • il y a 1 jour</div>
-          </div>
+          <div class="timeline-item"><i class="bi bi-file-text text-primary mt-1"></i><div><strong>Guide d'installation</strong> mis à jour • il y a 2 heures</div></div>
+          <div class="timeline-item"><i class="bi bi-download text-success mt-1"></i><div><strong>install.js</strong> téléchargé 47 fois aujourd'hui</div></div>
+          <div class="timeline-item"><i class="bi bi-code-square text-info mt-1"></i><div><strong>API v2.0</strong> déployée • il y a 1 jour</div></div>
+          <div class="timeline-item"><i class="bi bi-envelope text-warning mt-1"></i><div><strong>Ticket support #124</strong> résolu • il y a 3 heures</div></div>
         </div>
       </div>
       
@@ -226,18 +208,8 @@
         <div class="chart-container">
           <h3 class="fw-bold mb-3"><i class="bi bi-rocket-takeoff-fill me-2 text-primary"></i>Quick start</h3>
           <div class="row">
-            <div class="col-md-6">
-              <div class="bg-light rounded-3 p-3 mb-3">
-                <div class="fw-bold">1️⃣ Installation</div>
-                <pre class="mt-2 mb-0"><code>npm install -g docutech-cli</code></pre>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="bg-light rounded-3 p-3 mb-3">
-                <div class="fw-bold">2️⃣ Configuration</div>
-                <pre class="mt-2 mb-0"><code>docutech init my-project</code></pre>
-              </div>
-            </div>
+            <div class="col-md-6"><div class="bg-light rounded-3 p-3 mb-3"><div class="fw-bold">1️⃣ Installation</div><pre class="mt-2 mb-0"><code>npm install -g docutech-cli</code></pre></div></div>
+            <div class="col-md-6"><div class="bg-light rounded-3 p-3 mb-3"><div class="fw-bold">2️⃣ Configuration</div><pre class="mt-2 mb-0"><code>docutech init my-project</code></pre></div></div>
           </div>
         </div>
       </div>
@@ -246,24 +218,9 @@
       <div id="api" class="mt-4">
         <div class="chart-container">
           <h3 class="fw-bold mb-3"><i class="bi bi-code-slash me-2 text-primary"></i>API Reference</h3>
-          <pre><code>// Initialisation
-const client = new DocuTechClient({
-  apiKey: 'docu_sk_live_xxxxxxxxxxxx',
-  baseUrl: 'https://api.docutech.io/v2'
-});
-
-// Récupérer la documentation
+          <pre><code>const client = new DocuTechClient({ apiKey: 'docu_sk_live_xxxx' });
 const docs = await client.documents.list();
-const guide = await client.documents.get('getting-started');
-
-// Recherche
-const results = await client.search.query({
-  q: 'installation hardware',
-  limit: 10
-});
-
-// Téléchargement
-await client.download('install.js', './scripts/');</code></pre>
+const guide = await client.documents.get('getting-started');</code></pre>
         </div>
       </div>
       
@@ -271,51 +228,15 @@ await client.download('install.js', './scripts/');</code></pre>
       <div id="examples" class="mt-4">
         <div class="chart-container">
           <h3 class="fw-bold mb-3"><i class="bi bi-file-code me-2 text-primary"></i>Exemples de code</h3>
-          <ul class="nav nav-tabs mb-3" id="codeTabs">
-            <li class="nav-item"><button class="nav-link active" data-lang="js">JavaScript</button></li>
-            <li class="nav-item"><button class="nav-link" data-lang="py">Python</button></li>
-            <li class="nav-item"><button class="nav-link" data-lang="curl">cURL</button></li>
-          </ul>
-          <div id="js-code" class="code-block"><pre><code>// JavaScript - Authentification et requête
-const { DocuTechClient } = require('docutech-sdk');
-
-async function main() {
-  const client = new DocuTechClient({
-    apiKey: process.env.DOCUTECH_API_KEY
-  });
-  
-  const docs = await client.documents.list();
-  console.log(`📄 ${docs.length} documents disponibles`);
-}
-
-main().catch(console.error);</code></pre></div>
-          <div id="py-code" class="code-block d-none"><pre><code># Python - SDK DocuTech
-from docutech import Client
-import os
-
-client = Client(api_key=os.getenv("DOCUTECH_API_KEY"))
-
-# Récupérer les documents
-documents = client.documents.list()
-for doc in documents:
-    print(f"📄 {doc.title} - {doc.version}")
-
-# Recherche
-results = client.search("hardware configuration")
-print(f"🔍 {len(results)} résultats")</code></pre></div>
-          <div id="curl-code" class="code-block d-none"><pre><code># cURL - Appel direct à l'API
-curl -X GET https://api.docutech.io/v2/documents \
-  -H "Authorization: Bearer docu_sk_live_xxxxxxxxxxxx" \
-  -H "Content-Type: application/json"
-
-# Réponse
-{
-  "data": [
-    { "id": "1", "title": "Guide d'installation", "version": "2.0.0" },
-    { "id": "2", "title": "API Reference", "version": "2.0.0" }
-  ],
-  "total": 12
-}</code></pre></div>
+          <ul class="nav nav-tabs mb-3"><li class="nav-item"><button class="nav-link active" data-lang="js">JavaScript</button></li><li class="nav-item"><button class="nav-link" data-lang="py">Python</button></li><li class="nav-item"><button class="nav-link" data-lang="curl">cURL</button></li></ul>
+          <div id="js-code"><pre><code>const { DocuTechClient } = require('docutech-sdk');
+const client = new DocuTechClient({ apiKey: process.env.API_KEY });
+const docs = await client.documents.list();</code></pre></div>
+          <div id="py-code" class="d-none"><pre><code>from docutech import Client
+client = Client(api_key=os.getenv("API_KEY"))
+documents = client.documents.list()</code></pre></div>
+          <div id="curl-code" class="d-none"><pre><code>curl -X GET https://api.docutech.io/v2/documents \
+  -H "Authorization: Bearer docu_sk_live_xxxx"</code></pre></div>
         </div>
       </div>
       
@@ -323,106 +244,61 @@ curl -X GET https://api.docutech.io/v2/documents \
       <div id="hardware" class="mt-4">
         <div class="chart-container">
           <h3 class="fw-bold mb-3"><i class="bi bi-motherboard me-2 text-primary"></i>Configuration matérielle</h3>
-          <pre><code># Détection automatique I2C/GPIO
-python hardware_setup.py
-
-# Sortie générée
-{
-  "i2c": { "devices": ["0x48", "0x3c", "0x68"], "frequency": 100000 },
-  "gpio": { "pins": [17, 18, 22, 23, 24, 25, 27], "status": "ready" },
-  "network": { "ip": "192.168.1.100", "gateway": "192.168.1.1" },
-  "system": { "os": "Raspbian GNU/Linux 12", "architecture": "aarch64" }
-}</code></pre>
+          <pre><code>python hardware_setup.py
+# Sortie: { "i2c": { "devices": ["0x48"] }, "gpio": { "pins": [17,18,22] } }</code></pre>
         </div>
       </div>
       
-      <!-- Ressources téléchargeables -->
+      <!-- Ressources -->
       <div id="resources" class="mt-4">
         <div class="chart-container">
-          <h3 class="fw-bold mb-3"><i class="bi bi-cloud-arrow-down-fill me-2 text-primary"></i>Ressources</h3>
+          <h3 class="fw-bold mb-3"><i class="bi bi-cloud-arrow-down-fill me-2 text-primary"></i>Téléchargements</h3>
           <div class="row g-3">
-            <div class="col-md-4">
-              <div class="download-card">
-                <i class="bi bi-filetype-js fs-1 text-primary"></i>
-                <h6 class="mt-2">install.js</h6>
-                <small class="text-muted d-block mb-2">Script d'installation</small>
-                <button class="btn-download" onclick="downloadInstallJS()"><i class="bi bi-download"></i> Télécharger</button>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="download-card">
-                <i class="bi bi-filetype-py fs-1 text-success"></i>
-                <h6 class="mt-2">hardware_setup.py</h6>
-                <small class="text-muted d-block mb-2">Configuration matérielle</small>
-                <button class="btn-download" onclick="downloadHardwarePY()"><i class="bi bi-download"></i> Télécharger</button>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="download-card">
-                <i class="bi bi-filetype-pdf fs-1 text-danger"></i>
-                <h6 class="mt-2">guide_complet.pdf</h6>
-                <small class="text-muted d-block mb-2">Documentation PDF</small>
-                <button class="btn-download" onclick="downloadPDF()"><i class="bi bi-download"></i> Télécharger</button>
-              </div>
-            </div>
+            <div class="col-md-4"><a class="download-card" href="#" onclick="downloadInstallJS(); return false;"><i class="bi bi-filetype-js fs-1 text-primary"></i><h6 class="mt-2">install.js</h6><small class="text-muted d-block mb-2">Script d'installation</small><span class="btn-download"><i class="bi bi-download"></i> Télécharger</span></a></div>
+            <div class="col-md-4"><a class="download-card" href="#" onclick="downloadHardwarePY(); return false;"><i class="bi bi-filetype-py fs-1 text-success"></i><h6 class="mt-2">hardware_setup.py</h6><small class="text-muted d-block mb-2">Configuration matérielle</small><span class="btn-download"><i class="bi bi-download"></i> Télécharger</span></a></div>
+            <div class="col-md-4"><a class="download-card" href="#" onclick="downloadPDF(); return false;"><i class="bi bi-filetype-pdf fs-1 text-danger"></i><h6 class="mt-2">guide_complet.pdf</h6><small class="text-muted d-block mb-2">Documentation PDF</small><span class="btn-download"><i class="bi bi-download"></i> Télécharger</span></a></div>
           </div>
         </div>
       </div>
       
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="container text-center">
-    <p class="mb-2">© 2026 DocuTech – Plateforme de documentation nouvelle génération</p>
-    <p class="small">
-      <a href="#" class="text-white-50 mx-2 text-decoration-none">GitHub</a> •
-      <a href="#" class="text-white-50 mx-2 text-decoration-none">Documentation</a> •
-      <a href="#" class="text-white-50 mx-2 text-decoration-none">API Status</a> •
-      <a href="#" class="text-white-50 mx-2 text-decoration-none">Contact</a>
-    </p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-// Graphiques
-const ctx = document.getElementById('apiChart')?.getContext('2d');
-if (ctx) {
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'Sem 7', 'Sem 8'],
-      datasets: [{
-        label: 'Requêtes API',
-        data: [4200, 5800, 7100, 8900, 10400, 12300, 14100, 15600],
-        borderColor: '#2563eb',
-        backgroundColor: 'rgba(37,99,235,0.05)',
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: '#2563eb',
-        pointBorderColor: 'white',
-        pointRadius: 4,
-        pointHoverRadius: 6
-      }]
-    },
-    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
-  });
-}
-
-const pieCtx = document.getElementById('pieChart')?.getContext('2d');
-if (pieCtx) {
-  new Chart(pieCtx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Documentation', 'API', 'Hardware'],
-      datasets: [{
-        data: [58, 27, 15],
-        backgroundColor: ['#2563eb', '#10b981', '#f59e0b'],
-        borderWidth: 0,
-        hoverOffset: 10
-      }]
-    },
-    options: { responsive: t
+      <!-- SECTION CONTACT -->
+      <div id="contact" class="mt-4">
+        <div class="contact-card">
+          <div class="row g-0">
+            <div class="col-md-5 contact-info">
+              <i class="bi bi-chat-dots-fill fs-1"></i>
+              <h3 class="mt-3 fw-bold">Support technique</h3>
+              <p>Une question ? Un problème ? Notre équipe vous répond sous 24h.</p>
+              <hr class="bg-white opacity-25 my-3">
+              <p><i class="bi bi-envelope-fill me-2"></i> support@docutech.io</p>
+              <p><i class="bi bi-telephone-fill me-2"></i> +33 1 23 45 67 89</p>
+              <p><i class="bi bi-clock-fill me-2"></i> Lun-Ven, 9h-18h</p>
+              <div class="mt-3">
+                <a href="#" class="social-icon bg-white bg-opacity-20"><i class="bi bi-twitter-x text-white"></i></a>
+                <a href="#" class="social-icon bg-white bg-opacity-20"><i class="bi bi-github text-white"></i></a>
+                <a href="#" class="social-icon bg-white bg-opacity-20"><i class="bi bi-discord text-white"></i></a>
+              </div>
+            </div>
+            <div class="col-md-7 contact-form">
+              <h4 class="fw-bold mb-3">Envoyez-nous un message</h4>
+              <form id="contactForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label small fw-semibold">Nom complet</label>
+                    <input type="text" class="form-control" id="contactName" required placeholder="Jean Dupont">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-semibold">Email</label>
+                    <input type="email" class="form-control" id="contactEmail" required placeholder="jean@exemple.com">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label small fw-semibold">Sujet</label>
+                    <select class="form-select" id="contactSubject">
+                      <option value="support">Support technique</option>
+                      <option value="commercial">Demande commerciale</option>
+                      <option value="bug">Signalement bug</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label small fw-semibold">Message</l
