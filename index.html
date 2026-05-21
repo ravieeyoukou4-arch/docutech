@@ -3,271 +3,412 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocuTech | Documentation technique premium</title>
-  <meta name="description" content="Documentation technique professionnelle pour projets logiciels et matériels. API claire, exemples de code, support dédié.">
+  <title>DocuTech | Documentation technique professionnelle</title>
+  <meta name="description" content="Documentation technique claire, moderne et accessible. API, exemples de code, support dédié.">
   <meta name="author" content="RavieTech">
+  
+  <!-- SSL / Sécurité visible -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
+  <!-- Animation AOS pour le scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #fafcff; color: #0a0b1e; scroll-behavior: smooth; }
     
-    .navbar { background: rgba(10, 11, 30, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .navbar-brand { font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-link { font-weight: 500; color: #cbd5e1 !important; margin: 0 0.25rem; transition: all 0.2s; }
-    .nav-link:hover { color: #60a5fa !important; background: rgba(96,165,250,0.1); border-radius: 0.5rem; }
+    /* === CHARTE GRAPHIQUE : 3 couleurs === */
+    :root {
+      --primary: #7c3aed;
+      --secondary: #2563eb;
+      --accent: #ec489a;
+      --dark: #0f0c29;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
     
-    .hero { background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 40%, #2d1b4e 100%); color: white; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(96,165,250,0.15), transparent); animation: rotate 20s linear infinite; }
+    /* Animations subtiles */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glow { 0%,100% { box-shadow: 0 0 5px var(--primary); } 50% { box-shadow: 0 0 20px var(--primary); } }
+    
+    /* Navigation moderne */
+    .navbar { background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+    .navbar-brand { font-weight: 800; font-size: 1.6rem; background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-link { font-weight: 500; color: var(--gray) !important; margin: 0 0.25rem; transition: all 0.3s; }
+    .nav-link:hover { color: var(--primary) !important; transform: translateY(-2px); }
+    
+    /* Hero section */
+    .hero { background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 50%, #2d1b4e 100%); color: white; padding: 5rem 0; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(124,58,237,0.15), transparent); animation: rotate 20s linear infinite; }
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .hero-logo { width: 90px; margin-bottom: 1.5rem; filter: drop-shadow(0 0 30px rgba(96,165,250,0.6)); animation: float 3s ease infinite; }
+    .hero-logo { width: 90px; margin-bottom: 1.5rem; animation: float 3s ease infinite; }
     @keyframes float { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
-    .hero h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, #c084fc, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border-radius: 2rem; padding: 0.3rem 1rem; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2); }
+    .hero h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; animation: fadeInUp 0.6s ease; }
+    .hero p { animation: fadeInUp 0.6s ease 0.1s both; }
+    .hero .btn { animation: fadeInUp 0.6s ease 0.2s both; }
     
-    .search-container { max-width: 500px; margin: 2rem auto 0; position: relative; }
-    .search-input { width: 100%; padding: 1rem 1.5rem; border-radius: 3rem; border: none; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); color: white; font-size: 1rem; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2); }
-    .search-input:focus { outline: none; background: rgba(255,255,255,0.2); border-color: #60a5fa; box-shadow: 0 0 20px rgba(96,165,250,0.3); }
-    .search-input::placeholder { color: #94a3b8; }
-    .search-results { position: absolute; top: 100%; left: 0; right: 0; background: #1e1b4b; border-radius: 1rem; margin-top: 0.5rem; z-index: 100; display: none; max-height: 300px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1); }
-    .search-result-item { padding: 0.8rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.2s; color: #e2e8f0; }
-    .search-result-item:hover { background: rgba(96,165,250,0.2); color: white; }
+    /* Espaces blancs et hiérarchie visuelle */
+    .container { padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+    h1 { font-size: 3rem; font-weight: 800; }
+    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
+    h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
     
-    .sidebar { position: sticky; top: 90px; background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08); border: 1px solid #eef2ff; }
-    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.7rem 0.85rem; border-radius: 0.75rem; color: #374151; font-weight: 500; transition: all 0.2s; text-decoration: none; }
-    .sidebar-link:hover { background: linear-gradient(135deg, #eef2ff, #e0e7ff); color: #7c3aed; transform: translateX(6px); }
+    /* Cartes avec hover effet */
+    .card-premium { background: white; border-radius: 1.5rem; padding: 1.75rem; margin-bottom: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #eef2ff; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .card-premium:hover { transform: translateY(-6px); box-shadow: 0 25px 35px -12px rgba(124,58,237,0.2); border-color: var(--primary); }
     
-    .card-premium { background: white; border-radius: 1.5rem; padding: 1.75rem; margin-bottom: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #eef2ff; transition: all 0.3s; }
-    .card-premium:hover { box-shadow: 0 20px 30px -15px rgba(0,0,0,0.1); border-color: #c084fc; }
-    .card-header { border-left: 4px solid #c084fc; padding-left: 1rem; margin-bottom: 1.5rem; }
-    
-    pre { background: #0f0c29; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.85rem; border: 1px solid #2d1b4e; }
-    code { background: #eef2ff; color: #7c3aed; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; }
+    /* Code blocks élégants */
+    pre { background: var(--dark); color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.85rem; border: 1px solid #2d1b4e; transition: all 0.3s; }
+    pre:hover { border-color: var(--primary); box-shadow: 0 0 15px rgba(124,58,237,0.2); }
+    code { background: #eef2ff; color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; }
     pre code { background: transparent; color: inherit; padding: 0; }
     
-    .nav-tabs { border-bottom: 2px solid #eef2ff; }
-    .nav-tabs .nav-link { border: none; color: #64748b; font-weight: 600; padding: 0.75rem 1.25rem; cursor: pointer; background: transparent; }
-    .nav-tabs .nav-link.active { color: #7c3aed; background: linear-gradient(135deg, #eef2ff, #fae8ff); border-radius: 0.75rem 0.75rem 0 0; }
+    /* Boutons avec micro-interactions */
+    .btn-primary-custom { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 3rem; padding: 0.8rem 1.8rem; font-weight: 600; transition: all 0.3s; color: white; }
+    .btn-primary-custom:hover { transform: scale(1.05); box-shadow: 0 10px 25px -5px var(--primary); }
+    .btn-outline-custom { background: transparent; border: 2px solid white; border-radius: 3rem; padding: 0.8rem 1.8rem; font-weight: 600; transition: all 0.3s; color: white; }
+    .btn-outline-custom:hover { background: white; color: var(--primary); transform: scale(1.05); }
     
+    /* Avis clients (preuve sociale) */
+    .testimonial-card { background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s; border: 1px solid #eef2ff; }
+    .testimonial-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; }
+    .rating { color: #f59e0b; }
+    
+    /* Photo équipe */
+    .team-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); transition: all 0.3s; }
+    .team-photo:hover { transform: scale(1.05); border-color: var(--secondary); }
+    
+    /* FAQ */
     .faq-question { cursor: pointer; padding: 1rem; background: #f8fafc; border-radius: 1rem; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
     .faq-question:hover { background: #eef2ff; }
-    .faq-answer { display: none; padding: 1rem; color: #4b5563; border-left: 3px solid #c084fc; margin-top: 0.5rem; margin-bottom: 1rem; background: #fafcff; border-radius: 0.5rem; }
+    .faq-answer { display: none; padding: 1rem; color: var(--gray); border-left: 3px solid var(--primary); margin-top: 0.5rem; background: #fafcff; border-radius: 0.5rem; }
     
-    .changelog-item { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #eef2ff; align-items: center; flex-wrap: wrap; }
-    .changelog-badge { background: #c084fc; color: white; padding: 0.2rem 0.6rem; border-radius: 2rem; font-size: 0.7rem; font-weight: 600; display: inline-block; }
-    .changelog-badge.fixed { background: #10b981; }
-    .changelog-badge.changed { background: #f59e0b; }
+    /* Download cards */
+    .download-card { background: linear-gradient(135deg, #f8fafc, #ffffff); border-radius: 1rem; padding: 1.25rem; text-align: center; transition: all 0.3s; border: 1px solid #eef2ff; cursor: pointer; }
+    .download-card:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: 0 20px 25px -12px rgba(124,58,237,0.3); }
+    .btn-download { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 2rem; padding: 0.6rem 1.3rem; font-weight: 600; transition: all 0.2s; color: white; cursor: pointer; }
+    .btn-download:hover { transform: scale(1.05); box-shadow: 0 10px 20px -5px var(--primary); }
     
-    .download-card { background: linear-gradient(135deg, #f8fafc, #ffffff); border-radius: 1rem; padding: 1.25rem; text-align: center; transition: all 0.3s; border: 1px solid #eef2ff; }
-    .download-card:hover { border-color: #c084fc; transform: translateY(-6px); box-shadow: 0 20px 25px -12px rgba(192,132,252,0.3); }
-    .btn-download { background: linear-gradient(135deg, #7c3aed, #c084fc); border: none; border-radius: 2rem; padding: 0.6rem 1.3rem; font-weight: 600; transition: all 0.2s; color: white; }
-    .btn-download:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px rgba(124,58,237,0.4); }
-    
-    .contact-card { background: linear-gradient(135deg, #7c3aed, #c084fc); border-radius: 1.5rem; overflow: hidden; color: white; }
+    /* Contact */
+    .contact-card { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 1.5rem; overflow: hidden; color: white; }
     .contact-info { padding: 2rem; background: rgba(0,0,0,0.2); }
     .contact-form { background: white; padding: 2rem; }
-    .btn-submit { background: linear-gradient(135deg, #7c3aed, #c084fc); border: none; border-radius: 2rem; padding: 0.75rem; font-weight: 600; color: white; width: 100%; transition: all 0.2s; }
-    .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px rgba(124,58,237,0.4); }
+    .btn-submit { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 2rem; padding: 0.75rem; font-weight: 600; color: white; width: 100%; transition: all 0.2s; cursor: pointer; }
+    .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px var(--primary); }
     .btn-call { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 2rem; padding: 0.6rem 1.2rem; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
-    .btn-call:hover { background: white; color: #7c3aed; transform: scale(1.02); }
+    .btn-call:hover { background: white; color: var(--primary); transform: scale(1.05); }
     
-    .footer { background: #0f0c29; color: #94a3b8; padding: 2.5rem 0; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.2s; margin: 0 0.25rem; }
-    .social-icon:hover { background: #7c3aed; transform: translateY(-3px); }
+    /* Footer avec mentions légales */
+    .footer { background: var(--dark); color: #94a3b8; padding: 2.5rem 0; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.3s; margin: 0 0.25rem; }
+    .social-icon:hover { background: var(--primary); transform: translateY(-3px); }
     
+    /* Toast notification */
     .toast-notif { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #10b981; color: white; padding: 1rem 1.5rem; border-radius: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
     .toast-notif.show { opacity: 1; }
     
-    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .sidebar { position: relative; top: 0; margin-bottom: 2rem; } .contact-info { text-align: center; } }
+    /* Mobile-first : responsive */
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } h2 { font-size: 1.5rem; } .container { padding: 0 1rem; } section { padding: 2rem 0; } }
+    
+    /* Animation au scroll */
+    [data-aos] { opacity: 0; transition: all 0.6s ease; }
+    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
 <div id="toastMsg" class="toast-notif">✅ Message envoyé !</div>
 
-<nav class="navbar navbar-expand-lg sticky-top">
+<!-- Navigation simple (3 clics max) -->
+<nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="#">✨ DocuTech</a>
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
-      <span class="navbar-toggler-icon text-white"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav ms-auto gap-2">
+      <ul class="navbar-nav ms-auto gap-3">
         <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
         <li class="nav-item"><a class="nav-link" href="#docs">Documentation</a></li>
-        <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- Hero section -->
 <section id="accueil" class="hero text-center">
   <div class="container">
-    <div class="hero-badge">⚡ Nouvelle génération</div>
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="DocuTech" class="hero-logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="DocuTech Logo" class="hero-logo">
     <h1>Documentation technique<br>puissante & élégante</h1>
-    <p class="lead mt-3 opacity-75">API claire • Code examples • Support dédié</p>
-    
-    <div class="search-container">
-      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Rechercher dans la documentation...">
-      <div class="search-results" id="searchResults"></div>
-    </div>
-    
+    <p class="lead mt-3 opacity-75">API claire • Code examples • Support dédié 24/7</p>
     <div class="mt-4">
-      <a href="#docs" class="btn rounded-pill px-4 py-2 me-2" style="background: linear-gradient(135deg, #7c3aed, #c084fc); color: white; border: none;">📘 Commencer</a>
-      <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2">💬 Support</a>
+      <a href="#docs" class="btn btn-primary-custom me-2">📘 Commencer</a>
+      <a href="#contact" class="btn btn-outline-custom">💬 Support</a>
     </div>
   </div>
 </section>
 
-<div class="container my-5">
+<!-- Section À PROPOS (identité claire, humain visible, preuve sociale) -->
+<section id="apropos" class="container my-5">
+  <h2>À propos de DocuTech</h2>
   <div class="row g-4">
+    <div class="col-md-6" data-aos="fade-right">
+      <div class="card-premium">
+        <h3>📖 Notre histoire</h3>
+        <p>Fondée en 2024 par des passionnés de technologie, DocuTech est née d'un constat : la documentation technique est souvent trop complexe ou mal organisée. Notre mission ? Rendre la documentation accessible, claire et belle.</p>
+        <p><strong>RavieTech</strong> – Expert en documentation technique</p>
+        <div class="d-flex gap-3 mt-3">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="RavieTech" class="team-photo">
+          <div><strong>Ravie Youkou</strong><br><small>Fondateur & Lead Developer</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+      <div class="card-premium">
+        <h3>⭐ Ce qu'ils disent de nous</h3>
+        <div class="testimonial-card mb-3">
+          <div class="d-flex gap-3 align-items-center">
+            <div class="testimonial-avatar">JD</div>
+            <div><strong>Jean Dupont</strong><br><small>CTO, TechCorp</small></div>
+            <div class="rating ms-auto">★★★★★</div>
+          </div>
+          <p class="mt-2">"La meilleure documentation technique que j'ai utilisée. Claire, complète et moderne."</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="d-flex gap-3 align-items-center">
+            <div class="testimonial-avatar">ML</div>
+            <div><strong>Marie Laurent</strong><br><small>Développeuse</small></div>
+            <div class="rating ms-auto">★★★★★</div>
+          </div>
+          <p class="mt-2">"Les exemples de code sont parfaits. J'ai intégré l'API en 10 minutes !"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Documentation -->
+<section id="docs" class="container my-5">
+  <h2>📚 Documentation technique</h2>
+  
+  <div class="row g-4">
+    <!-- Sidebar navigation -->
     <div class="col-lg-3">
-      <div class="sidebar">
-        <h5 class="fw-bold mb-3" style="color: #7c3aed;">📖 Navigation</h5>
+      <div class="card-premium sticky-top" style="top: 90px;">
+        <h5 class="fw-bold mb-3" style="color: var(--primary);">Navigation rapide</h5>
         <nav class="nav flex-column">
-          <a class="sidebar-link" href="#quick-start"><i class="bi bi-play-circle"></i> Quick start</a>
-          <a class="sidebar-link" href="#installation"><i class="bi bi-download"></i> Installation</a>
-          <a class="sidebar-link" href="#api"><i class="bi bi-code-square"></i> API Reference</a>
-          <a class="sidebar-link" href="#examples"><i class="bi bi-file-code"></i> Exemples de code</a>
-          <a class="sidebar-link" href="#hardware"><i class="bi bi-motherboard"></i> Hardware setup</a>
-          <a class="sidebar-link" href="#faq"><i class="bi bi-question-circle"></i> FAQ</a>
-          <a class="sidebar-link" href="#changelog"><i class="bi bi-clock-history"></i> Changelog</a>
-          <a class="sidebar-link" href="#resources"><i class="bi bi-cloud-arrow-down"></i> Téléchargements</a>
-          <a class="sidebar-link" href="#contact"><i class="bi bi-envelope"></i> Contact</a>
+          <a class="sidebar-link" href="#quick-start" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-play-circle"></i> Quick start</a>
+          <a class="sidebar-link" href="#installation" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-download"></i> Installation</a>
+          <a class="sidebar-link" href="#api" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-code-square"></i> API Reference</a>
+          <a class="sidebar-link" href="#examples" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-file-code"></i> Exemples</a>
+          <a class="sidebar-link" href="#hardware" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-motherboard"></i> Hardware</a>
+          <a class="sidebar-link" href="#faq" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-question-circle"></i> FAQ</a>
+          <a class="sidebar-link" href="#downloads" style="display: flex; align-items: center; gap: 8px; padding: 8px; text-decoration: none; color: var(--gray);"><i class="bi bi-cloud-arrow-down"></i> Téléchargements</a>
         </nav>
       </div>
     </div>
     
     <div class="col-lg-9">
-      
-      <div id="quick-start" class="card-premium">
-        <div class="card-header"><h2 class="fw-bold mb-0">🚀 Quick start</h2></div>
-        <p>Installez et utilisez DocuTech en 2 minutes :</p>
+      <div id="quick-start" class="card-premium" data-aos="fade-up">
+        <div class="card-header-custom"><h3 class="fw-bold mb-0">🚀 Quick start</h3></div>
         <div class="row mt-3">
-          <div class="col-md-6"><div class="bg-light rounded-3 p-3 mb-3"><div class="fw-bold">1️⃣ Installation</div><pre class="mt-2 mb-0"><code>npm install -g docutech-cli</code></pre></div></div>
-          <div class="col-md-6"><div class="bg-light rounded-3 p-3 mb-3"><div class="fw-bold">2️⃣ Initialisation</div><pre class="mt-2 mb-0"><code>docutech init mon-projet</code></pre></div></div>
+          <div class="col-md-6"><div class="bg-light rounded-3 p-3"><div class="fw-bold">1️⃣ Installation</div><pre class="mt-2 mb-0"><code>npm install -g docutech-cli</code></pre></div></div>
+          <div class="col-md-6"><div class="bg-light rounded-3 p-3"><div class="fw-bold">2️⃣ Initialisation</div><pre class="mt-2 mb-0"><code>docutech init mon-projet</code></pre></div></div>
         </div>
       </div>
       
-      <div id="installation" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-download me-2 text-purple"></i>Installation complète</h3></div>
-        <pre><code># Télécharger le script d'installation
-curl -fsSL https://ravietech.github.io/docutech/install.js | node
-
-# Ou manuellement
-git clone https://github.com/ravietech/docutech.git
+      <div id="installation" class="card-premium" data-aos="fade-up">
+        <h3>📦 Installation complète</h3>
+        <pre><code>git clone https://github.com/ravietech/docutech.git
 cd docutech
 npm install
 npm start</code></pre>
       </div>
       
-      <div id="api" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-code-slash me-2 text-purple"></i>API Reference</h3></div>
-        <pre><code>// Initialisation
-const client = new DocuTechClient({
-  apiKey: 'docu_sk_live_xxxx',
-  baseUrl: 'https://api.docutech.io/v2'
-});
-
-// Récupérer les documents
-const docs = await client.documents.list();
-const guide = await client.documents.get('getting-started');
-
-// Recherche
-const results = await client.search({ q: 'installation' });</code></pre>
+      <div id="api" class="card-premium" data-aos="fade-up">
+        <h3>🔌 API Reference</h3>
+        <pre><code>const client = new DocuTechClient({ apiKey: 'docu_sk_live_xxxx' });
+const docs = await client.documents.list();</code></pre>
       </div>
       
-      <div id="examples" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-file-code me-2 text-purple"></i>Exemples de code</h3></div>
-        <ul class="nav nav-tabs mb-3">
-          <li class="nav-item"><button class="nav-link active" data-lang="js">JavaScript</button></li>
-          <li class="nav-item"><button class="nav-link" data-lang="py">Python</button></li>
-          <li class="nav-item"><button class="nav-link" data-lang="curl">cURL</button></li>
-        </ul>
-        <div id="js-code"><pre><code>// JavaScript - SDK DocuTech
-const { DocuTechClient } = require('docutech-sdk');
-
-async function main() {
-  const client = new DocuTechClient({ apiKey: 'docu_sk_live_xxxx' });
-  const docs = await client.documents.list();
-  console.log(`📄 ${docs.length} documents`);
-}
-main();</code></pre></div>
-        <div id="py-code" class="d-none"><pre><code># Python - SDK DocuTech
-from docutech import Client
-
+      <div id="examples" class="card-premium" data-aos="fade-up">
+        <h3>💻 Exemples de code</h3>
+        <div class="d-flex gap-2 mb-3">
+          <button class="btn btn-sm btn-outline-secondary active" data-lang="js">JavaScript</button>
+          <button class="btn btn-sm btn-outline-secondary" data-lang="py">Python</button>
+          <button class="btn btn-sm btn-outline-secondary" data-lang="curl">cURL</button>
+        </div>
+        <div id="js-code"><pre><code>const { DocuTechClient } = require('docutech-sdk');
+const client = new DocuTechClient({ apiKey: 'docu_sk_live_xxxx' });
+const docs = await client.documents.list();</code></pre></div>
+        <div id="py-code" class="d-none"><pre><code>from docutech import Client
 client = Client(api_key="docu_sk_live_xxxx")
-documents = client.documents.list()
-print(f"📄 {len(documents)} documents")</code></pre></div>
-        <div id="curl-code" class="d-none"><pre><code># cURL - API directe
-curl -X GET https://api.docutech.io/v2/documents \
+documents = client.documents.list()</code></pre></div>
+        <div id="curl-code" class="d-none"><pre><code>curl -X GET https://api.docutech.io/v2/documents \
   -H "Authorization: Bearer docu_sk_live_xxxx"</code></pre></div>
       </div>
       
-      <div id="hardware" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-motherboard me-2 text-purple"></i>Configuration matérielle</h3></div>
+      <div id="hardware" class="card-premium" data-aos="fade-up">
+        <h3>🖥️ Configuration matérielle</h3>
         <pre><code>python hardware_setup.py
-
-# Sortie générée : hardware_config.json
-{
-  "i2c": { "devices": ["0x48", "0x3c"] },
-  "gpio": { "pins": [17, 18, 22, 23] },
-  "network": { "ip": "192.168.1.100" }
-}</code></pre>
+# Sortie: { "i2c": { "devices": ["0x48"] }, "gpio": { "pins": [17,18,22] } }</code></pre>
       </div>
       
-      <div id="faq" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-question-circle me-2 text-purple"></i>Foire aux questions</h3></div>
+      <div id="faq" class="card-premium" data-aos="fade-up">
+        <h3>❓ Foire aux questions</h3>
         <div class="faq-item mb-2">
-          <div class="faq-question" onclick="toggleFAQ(this)"><span>❓ Comment installer DocuTech ?</span><i class="bi bi-chevron-down"></i></div>
-          <div class="faq-answer">Exécutez <code>npm install -g docutech-cli</code> puis <code>docutech init mon-projet</code>. Consultez notre guide d'installation pour plus de détails.</div>
+          <div class="faq-question" onclick="toggleFAQ(this)"><span>Comment installer DocuTech ?</span><i class="bi bi-chevron-down"></i></div>
+          <div class="faq-answer">Exécutez <code>npm install -g docutech-cli</code> puis <code>docutech init mon-projet</code>.</div>
         </div>
         <div class="faq-item mb-2">
-          <div class="faq-question" onclick="toggleFAQ(this)"><span>❓ DocuTech est-il gratuit ?</span><i class="bi bi-chevron-down"></i></div>
-          <div class="faq-answer">Oui, DocuTech est open source et totalement gratuit. Une version enterprise avec support prioritaire est disponible sur demande.</div>
+          <div class="faq-question" onclick="toggleFAQ(this)"><span>DocuTech est-il gratuit ?</span><i class="bi bi-chevron-down"></i></div>
+          <div class="faq-answer">Oui, 100% open source et gratuit. Une version enterprise est disponible.</div>
         </div>
         <div class="faq-item mb-2">
-          <div class="faq-question" onclick="toggleFAQ(this)"><span>❓ Comment configurer le matériel (Raspberry Pi) ?</span><i class="bi bi-chevron-down"></i></div>
-          <div class="faq-answer">Utilisez <code>python hardware_setup.py</code> pour la détection automatique I2C/GPIO. Un fichier hardware_config.json sera généré.</div>
-        </div>
-        <div class="faq-item mb-2">
-          <div class="faq-question" onclick="toggleFAQ(this)"><span>❓ Comment obtenir une clé API ?</span><i class="bi bi-chevron-down"></i></div>
-          <div class="faq-answer">Inscrivez-vous sur notre dashboard ou utilisez la clé de démo "docu_sk_live_xxxx" pour tester.</div>
+          <div class="faq-question" onclick="toggleFAQ(this)"><span>Comment obtenir une clé API ?</span><i class="bi bi-chevron-down"></i></div>
+          <div class="faq-answer">Utilisez "docu_sk_live_xxxx" pour tester, ou créez un compte gratuit.</div>
         </div>
       </div>
       
-      <div id="changelog" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-clock-history me-2 text-purple"></i>Changelog</h3></div>
-        <div class="changelog-item"><span class="changelog-badge">v2.0.0</span><div><strong>API v2 déployée</strong><br><small>Nouveaux endpoints, meilleure performance</small></div><span class="ms-auto text-muted small">15 mai 2026</span></div>
-        <div class="changelog-item"><span class="changelog-badge fixed">fix</span><div><strong>Correction bug I2C sur Raspberry Pi 5</strong><br><small>Détection améliorée</small></div><span class="ms-auto text-muted small">10 mai 2026</span></div>
-        <div class="changelog-item"><span class="changelog-badge changed">new</span><div><strong>Support Python 3.12</strong><br><small>SDK mis à jour</small></div><span class="ms-auto text-muted small">5 mai 2026</span></div>
-        <div class="changelog-item"><span class="changelog-badge">v1.5.0</span><div><strong>Documentation hardware enrichie</strong><br><small>Ajout des exemples ESP32</small></div><span class="ms-auto text-muted small">28 avril 2026</span></div>
-      </div>
-      
-      <div id="resources" class="card-premium">
-        <div class="card-header"><h3 class="fw-bold mb-0"><i class="bi bi-cloud-arrow-down-fill me-2 text-purple"></i>Téléchargements</h3></div>
+      <div id="downloads" class="card-premium" data-aos="fade-up">
+        <h3>📦 Téléchargements</h3>
         <div class="row g-3">
-          <div class="col-md-4"><div class="download-card"><i class="bi bi-filetype-js fs-1 text-purple"></i><h6 class="mt-2">install.js</h6><small class="text-muted d-block mb-2">Script d'installation</small><button class="btn-download" onclick="downloadInstallJS()"><i class="bi bi-download"></i> Télécharger</button></div></div>
-          <div class="col-md-4"><div class="download-card"><i class="bi bi-filetype-py fs-1 text-success"></i><h6 class="mt-2">hardware_setup.py</h6><small class="text-muted d-block mb-2">Configuration matérielle</small><button class="btn-download" onclick="downloadHardwarePY()"><i class="bi bi-download"></i> Télécharger</button></div></div>
-          <div class="col-md-4"><div class="download-card"><i class="bi bi-filetype-pdf fs-1 text-danger"></i><h6 class="mt-2">guide_complet.pdf</h6><small class="text-muted d-block mb-2">Documentation PDF</small><button class="btn-download" onclick="downloadPDF()"><i class="bi bi-download"></i> Télécharger</button></div></div>
+          <div class="col-md-4"><div class="download-card" onclick="downloadInstallJS()"><i class="bi bi-filetype-js fs-1"></i><h6>install.js</h6><small>Script installation</small><div class="btn-download mt-2">Télécharger</div></div></div>
+          <div class="col-md-4"><div class="download-card" onclick="downloadHardwarePY()"><i class="bi bi-filetype-py fs-1"></i><h6>hardware_setup.py</h6><small>Config matérielle</small><div class="btn-download mt-2">Télécharger</div></div></div>
+          <div class="col-md-4"><div class="download-card" onclick="downloadPDF()"><i class="bi bi-filetype-pdf fs-1"></i><h6>guide.pdf</h6><small>Documentation</small><div class="btn-download mt-2">Télécharger</div></div></div>
         </div>
       </div>
-      
-      <div id="contact" class="mt-4">
-        <div class="contact-card">
-          <div class="row g-0">
-            <div class="col-md-5 contact-info">
-              <i class="bi bi-chat-dots-fill fs-1"></i>
-              <h3 class="mt-3 fw-bold">Support technique</h3>
-              <p>Une question ? Contactez-nous directement.</p>
-              <hr class="bg-white opacity-25 my-3">
-              <p><i class="bi bi-telephone-fill me-2"></i> <a href="tel:+225069410186" class="btn-call"><i class="bi bi-phone"></i> 06 94 10 18 86</a></p>
-              <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:ravieeyoukou4@gmail.com" style="color:white; text-decoration:underline;">ravieeyoukou4@gmail.com</a></p>
-              <
+    </div>
+  </div>
+</section>
+
+<!-- Section Contact -->
+<section id="contact" class="container my-5">
+  <h2>📞 Contactez-nous</h2>
+  <div class="contact-card" data-aos="zoom-in">
+    <div class="row g-0">
+      <div class="col-md-5 contact-info">
+        <i class="bi bi-chat-dots-fill fs-1"></i>
+        <h3 class="mt-3">Support technique</h3>
+        <p>Réponse sous 24h maximum</p>
+        <hr class="bg-white opacity-25 my-3">
+        <p><a href="tel:+225069410186" class="btn-call"><i class="bi bi-phone"></i> 06 94 10 18 86</a></p>
+        <p><a href="mailto:ravieeyoukou4@gmail.com" style="color:white;">✉️ ravieeyoukou4@gmail.com</a></p>
+        <p><i class="bi bi-clock"></i> Lun-Ven, 9h-18h</p>
+      </div>
+      <div class="col-md-7 contact-form">
+        <h4 class="fw-bold mb-3">Envoyez-nous un message</h4>
+        <form id="contactForm">
+          <input type="text" class="form-control mb-3" id="contactName" placeholder="Votre nom" required>
+          <input type="email" class="form-control mb-3" id="contactEmail" placeholder="Votre email" required>
+          <textarea class="form-control mb-3" id="contactMessage" rows="4" placeholder="Votre message" required></textarea>
+          <button type="submit" class="btn-submit"><i class="bi bi-send me-2"></i>Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer avec mentions légales -->
+<footer class="footer">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-4">
+        <h5 class="text-white">DocuTech</h5>
+        <p class="small">Documentation technique claire et accessible</p>
+      </div>
+      <div class="col-md-4">
+        <h6>Mentions légales</h6>
+        <p class="small">
+          <a href="#" class="text-white-50">CGU</a> • 
+          <a href="#" class="text-white-50">Confidentialité</a> • 
+          <a href="#" class="text-white-50">Cookies</a>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h6>Suivez-nous</h6>
+        <div>
+          <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="mailto:ravieeyoukou4@gmail.com" class="social-icon"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="bg-secondary mt-3">
+    <p class="small mb-0">© 2026 DocuTech – Tous droits réservés | Hébergé sécurisé (SSL)</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 800, once: true });
+
+function toggleFAQ(el) {
+  const answer = el.nextElementSibling;
+  const icon = el.querySelector('i');
+  if (answer.style.display === 'block') {
+    answer.style.display = 'none';
+    icon.classList.remove('bi-chevron-up');
+    icon.classList.add('bi-chevron-down');
+  } else {
+    answer.style.display = 'block';
+    icon.classList.remove('bi-chevron-down');
+    icon.classList.add('bi-chevron-up');
+  }
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    document.querySelectorAll('#js-code, #py-code, #curl-code').forEach(block => block.classList.add('d-none'));
+    document.getElementById(`${this.dataset.lang}-code`).classList.remove('d-none');
+  });
+});
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('contactName').value;
+  const email = document.getElementById('contactEmail').value;
+  const message = document.getElementById('contactMessage').value;
+  window.location.href = `mailto:ravieeyoukou4@gmail.com?subject=DocuTech - ${name}&body=${encodeURIComponent(`Email: ${email}\n\n${message}`)}`;
+  const toast = document.getElementById('toastMsg');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+  this.reset();
+});
+
+function downloadInstallJS() {
+  const content = `#!/usr/bin/env node\nconsole.log('DocuTech Installer');\nconst fs = require('fs');\nif(!fs.existsSync('docutech-project')) fs.mkdirSync('docutech-project');\nprocess.chdir('docutech-project');\nconst pkg={name:'docutech-project',version:'1.0.0',scripts:{start:'node server.js'},dependencies:{express:'^4.18.2'}};\nfs.writeFileSync('package.json',JSON.stringify(pkg,null,2));\nfs.writeFileSync('server.js',"const express=require('express');const app=express();app.get('/',(r,q)=>q.send('DocuTech OK'));app.listen(3000);");\nrequire('child_process').execSync('npm install',{stdio:'inherit'});\nconsole.log('Termine ! npm start');`;
+  download(content, 'install.js', 'application/javascript');
+}
+function downloadHardwarePY() {
+  const content = `#!/usr/bin/env python3\nimport json\nconfig={"i2c":{"devices":["0x48"]},"gpio":{"pins":[17,18,22]}}\nwith open("hardware_config.json","w") as f: json.dump(config,f,indent=2)\nprint("hardware_config.json genere")`;
+  download(content, 'hardware_setup.py', 'text/x-python');
+}
+function downloadPDF() {
+  const content = `%PDF-1.4\n1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj\n3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj\n4 0 obj << /Length 100 >> stream\nBT /F1 24 Tf 100 750 Td (Guide DocuTech) Tj ET\nBT /F1 14 Tf 100 700 Td (1. Installation) Tj ET\nBT /F1 12 Tf 100 670 Td (npm install -g docutech-cli) Tj ET\nendstream endobj\nxref 0 5 0000000000 65535 f 0000000009 00000 n 0000000058 00000 n 0000000115 00000 n 0000000190 00000 n\ntrailer << /Size 5 /Root 1 0 R >> startxref 300 %%EOF`;
+  download(content, 'guide_docutech.pdf', 'application/pdf');
+}
+function download(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
+```
