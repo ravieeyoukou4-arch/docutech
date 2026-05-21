@@ -3,68 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocuTech | Documentation technique</title>
-  <meta name="description" content="Documentation claire et accessible pour projets logiciels ou matériels. Guides, exemples de code, API, ressources téléchargeables.">
+  <title>DocuTech | Documentation technique moderne</title>
+  <meta name="description" content="Documentation claire et accessible pour projets logiciels ou matériels. Design moderne, captures d'écran, API, exemples de code.">
   <meta name="author" content="RavieTech">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   
-  <!-- Google Fonts + Bootstrap -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1a1a2e; scroll-behavior: smooth; }
     
-    /* Typographie */
-    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
-    h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
-    h3 { font-size: 1.35rem; margin-bottom: 1rem; }
+    /* Glassmorphism effect */
+    .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
     
-    /* Navigation */
-    .navbar { background: #ffffff !important; border-bottom: 1px solid #eef2ff; padding: 1rem 0; }
-    .navbar-brand { font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-    .nav-link { font-weight: 500; color: #4a5568 !important; transition: color 0.2s; }
-    .nav-link:hover { color: #2563eb !important; }
+    /* Navigation moderne */
+    .navbar { background: rgba(255,255,255,0.95) !important; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 1rem 0; }
+    .navbar-brand { font-weight: 800; font-size: 1.5rem; background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-link { font-weight: 500; color: #4a5568 !important; transition: all 0.2s; }
+    .nav-link:hover { color: #2563eb !important; transform: translateY(-2px); }
     
-    /* Hero */
-    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 5rem 0 4rem; position: relative; }
-    .hero-logo { width: 80px; margin-bottom: 1.5rem; }
-    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+    /* Hero moderne */
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); color: white; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(37,99,235,0.15), transparent); pointer-events: none; }
+    .hero-logo { width: 80px; margin-bottom: 1.5rem; filter: drop-shadow(0 0 15px rgba(37,99,235,0.5)); }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, #fff, #94a3f8); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
     
-    /* Sidebar */
-    .sidebar { position: sticky; top: 100px; background: #f8fafc; border-radius: 1rem; padding: 1.5rem; }
-    .sidebar h5 { font-weight: 600; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; }
-    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.6rem 0.75rem; border-radius: 0.5rem; color: #334155; font-weight: 500; text-decoration: none; transition: all 0.2s; }
-    .sidebar-link:hover { background: #eef2ff; color: #2563eb; transform: translateX(4px); }
+    /* Sidebar moderne */
+    .sidebar { position: sticky; top: 90px; background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
+    .sidebar h5 { font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 0.7rem 0.75rem; border-radius: 0.75rem; color: #334155; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+    .sidebar-link:hover { background: #eef2ff; color: #2563eb; transform: translateX(6px); }
     
-    /* Cards */
-    .doc-card { background: white; border: 1px solid #eef2ff; border-radius: 1rem; padding: 1.75rem; margin-bottom: 1.75rem; transition: all 0.2s; }
-    .doc-card:hover { border-color: #cbd5e1; box-shadow: 0 8px 25px -12px rgba(0,0,0,0.1); }
+    /* Cards modernes */
+    .doc-card { background: white; border-radius: 1.5rem; padding: 1.75rem; margin-bottom: 1.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.03); }
+    .doc-card:hover { box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1); transform: translateY(-4px); border-color: rgba(37,99,235,0.2); }
     
-    /* Code blocks */
-    pre { background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 0.75rem; overflow-x: auto; font-size: 0.85rem; font-family: 'SF Mono', 'Fira Code', monospace; margin: 1rem 0; }
-    code { background: #eef2ff; color: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.4rem; font-size: 0.85rem; font-weight: 500; }
+    /* Code blocks modernes */
+    pre { background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 1rem; overflow-x: auto; font-size: 0.85rem; font-family: 'Fira Code', 'SF Mono', monospace; margin: 1rem 0; border: 1px solid #334155; }
+    code { background: #eef2ff; color: #1e293b; padding: 0.2rem 0.5rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; }
     pre code { background: transparent; color: inherit; padding: 0; }
     
-    /* Badges */
-    .badge-tech { background: #eef2ff; color: #2563eb; padding: 0.25rem 0.75rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 500; }
+    /* Captures d'écran (fausses mais réalistes) */
+    .screenshot-card { background: #f8fafc; border-radius: 1rem; overflow: hidden; transition: all 0.3s; border: 1px solid #e2e8f0; }
+    .screenshot-card:hover { transform: scale(1.02); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15); }
+    .screenshot-header { background: #1e293b; padding: 0.75rem 1rem; display: flex; gap: 0.5rem; }
+    .screenshot-dot { width: 12px; height: 12px; border-radius: 50%; background: #ef4444; }
+    .screenshot-dot:nth-child(2) { background: #f59e0b; }
+    .screenshot-dot:nth-child(3) { background: #10b981; }
+    .screenshot-content { padding: 1.5rem; background: white; }
+    .fake-ui { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 0.75rem; padding: 1rem; }
     
-    /* Download buttons */
-    .btn-download { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 2rem; padding: 0.5rem 1.25rem; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; color: #1e293b; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    /* Download section moderne */
+    .download-grid { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 1.5rem; padding: 2rem; }
+    .download-item { background: white; border-radius: 1rem; padding: 1.25rem; transition: all 0.3s; border: 1px solid #e2e8f0; }
+    .download-item:hover { border-color: #2563eb; transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(37,99,235,0.2); }
+    .btn-download { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 2rem; padding: 0.6rem 1.3rem; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; color: #1e293b; }
     .btn-download:hover { background: #2563eb; border-color: #2563eb; color: white; transform: translateY(-2px); }
     
-    /* Download section */
-    .download-grid { background: #f8fafc; border-radius: 1.5rem; padding: 2rem; margin-top: 1rem; }
-    .download-item { background: white; border-radius: 1rem; padding: 1.25rem; transition: all 0.2s; border: 1px solid #eef2ff; }
-    .download-item:hover { border-color: #cbd5e1; transform: translateY(-3px); }
-    
     /* Footer */
-    .footer { background: #f8fafc; border-top: 1px solid #eef2ff; padding: 2.5rem 0 2rem; margin-top: 3rem; color: #64748b; }
+    .footer { background: #0f172a; color: #94a3b8; padding: 2.5rem 0 2rem; margin-top: 3rem; }
+    .footer a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
+    .footer a:hover { color: white; }
     
     @media (max-width: 768px) { .hero { padding: 3rem 0; } .hero h1 { font-size: 2rem; } .sidebar { position: relative; top: 0; margin-bottom: 2rem; } }
   </style>
@@ -86,8 +94,8 @@
         <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
         <li class="nav-item"><a class="nav-link" href="#guide">Guide</a></li>
         <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="#exemples">Exemples</a></li>
-        <li class="nav-item"><a class="nav-link" href="#telechargements">Téléchargements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#captures">Captures</a></li>
+        <li class="nav-item"><a class="nav-link" href="#telechargements">Ressources</a></li>
       </ul>
     </div>
   </div>
@@ -97,11 +105,11 @@
 <section id="accueil" class="hero text-center">
   <div class="container">
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="DocuTech" class="hero-logo">
-    <h1>Documentation technique <br>claire & accessible</h1>
-    <p>Pour projets logiciels ou matériels. Guides, API, exemples de code et ressources.</p>
+    <h1>Documentation technique<br>moderne & accessible</h1>
+    <p>Pour projets logiciels ou matériels. Design épuré, API claires, exemples concrets.</p>
     <div class="mt-4">
-      <a href="#guide" class="btn btn-primary rounded-pill px-4 py-2 me-2" style="background:#2563eb; border:none;">📘 Commencer</a>
-      <a href="#telechargements" class="btn btn-outline-secondary rounded-pill px-4 py-2">📦 Télécharger</a>
+      <a href="#guide" class="btn btn-primary rounded-pill px-4 py-2 me-2" style="background:#2563eb; border:none; box-shadow: 0 4px 14px rgba(37,99,235,0.3);">📘 Commencer</a>
+      <a href="#telechargements" class="btn btn-outline-light rounded-pill px-4 py-2">📦 Télécharger</a>
     </div>
   </div>
 </section>
@@ -109,16 +117,17 @@
 <div class="container my-5">
   <div class="row g-5">
     
-    <!-- Sidebar gauche -->
+    <!-- Sidebar -->
     <div class="col-lg-3">
       <div class="sidebar">
-        <h5>Sommaire</h5>
+        <h5>📖 Sommaire</h5>
         <nav class="nav flex-column">
           <a class="sidebar-link" href="#guide"><i class="bi bi-play-circle"></i> Guide démarrage</a>
           <a class="sidebar-link" href="#installation"><i class="bi bi-download"></i> Installation</a>
           <a class="sidebar-link" href="#api"><i class="bi bi-code-square"></i> API Reference</a>
-          <a class="sidebar-link" href="#exemples"><i class="bi bi-file-code"></i> Exemples de code</a>
-          <a class="sidebar-link" href="#hardware"><i class="bi bi-motherboard"></i> Configuration matérielle</a>
+          <a class="sidebar-link" href="#exemples"><i class="bi bi-file-code"></i> Exemples</a>
+          <a class="sidebar-link" href="#captures"><i class="bi bi-camera"></i> Captures d'écran</a>
+          <a class="sidebar-link" href="#hardware"><i class="bi bi-motherboard"></i> Hardware</a>
           <a class="sidebar-link" href="#telechargements"><i class="bi bi-cloud-arrow-down"></i> Ressources</a>
         </nav>
       </div>
@@ -127,30 +136,30 @@
     <!-- Contenu principal -->
     <div class="col-lg-9">
       
-      <!-- Guide démarrage -->
+      <!-- Guide -->
       <div id="guide" class="doc-card">
         <h2><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Guide de démarrage rapide</h2>
-        <p>DocuTech fournit une documentation claire pour vos projets. Voici comment commencer :</p>
+        <p>DocuTech fournit une documentation claire et moderne. Voici comment commencer :</p>
         <div class="row mt-3">
           <div class="col-md-4 mb-3">
-            <div class="bg-light p-3 rounded-3 text-center">
-              <span class="badge-tech">1</span>
+            <div class="bg-light p-3 rounded-3 text-center" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9);">
+              <span class="badge bg-primary rounded-pill px-3 py-1 mb-2">Étape 1</span>
               <h6 class="mt-2">Prérequis</h6>
-              <small class="text-muted">Node.js v18+ / Python 3.10+</small>
+              <small>Node.js v18+ / Python 3.10+</small>
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <div class="bg-light p-3 rounded-3 text-center">
-              <span class="badge-tech">2</span>
+            <div class="bg-light p-3 rounded-3 text-center" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9);">
+              <span class="badge bg-primary rounded-pill px-3 py-1 mb-2">Étape 2</span>
               <h6 class="mt-2">Installation</h6>
-              <small class="text-muted">Téléchargez et exécutez le script</small>
+              <small>Téléchargez et exécutez le script</small>
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <div class="bg-light p-3 rounded-3 text-center">
-              <span class="badge-tech">3</span>
-              <h6 class="mt-2">Premier lancement</h6>
-              <small class="text-muted"><code>npm start</code></small>
+            <div class="bg-light p-3 rounded-3 text-center" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9);">
+              <span class="badge bg-primary rounded-pill px-3 py-1 mb-2">Étape 3</span>
+              <h6 class="mt-2">Lancement</h6>
+              <small><code>npm start</code></small>
             </div>
           </div>
         </div>
@@ -159,89 +168,185 @@
       <!-- Installation -->
       <div id="installation" class="doc-card">
         <h3><i class="bi bi-terminal me-2 text-primary"></i>Installation</h3>
-        <p>Exécutez le script d'installation pour configurer automatiquement l'environnement :</p>
-        <pre><code># Télécharger et exécuter
+        <pre><code># Télécharger et exécuter le script d'installation
 node install.js
 
-# Ou avec Python
+# Ou pour la configuration matérielle
 python hardware_setup.py</code></pre>
-        <p>Le script va :</p>
-        <ul>
-          <li>Vérifier les prérequis (Node.js, npm, Python)</li>
-          <li>Créer la structure du projet</li>
-          <li>Installer les dépendances</li>
-          <li>Générer la configuration</li>
-        </ul>
       </div>
       
-      <!-- API Reference -->
+      <!-- API -->
       <div id="api" class="doc-card">
         <h3><i class="bi bi-code-slash me-2 text-primary"></i>API Reference</h3>
-        <p>Le SDK DocuTech expose les méthodes suivantes :</p>
-        <pre><code>// Initialisation
+        <pre><code>// Initialisation du client DocuTech
 const client = new DocuTechClient({
   apiKey: 'your-api-key',
-  baseUrl: 'https://api.docutech.io'
+  baseUrl: 'https://api.docutech.io/v1'
 });
 
 // Méthodes disponibles
-await client.getDocs(section);     // Récupérer une doc
-await client.search(query);        // Rechercher
-await client.download(file);       // Télécharger un fichier</code></pre>
+await client.getDocs('guide');     // Récupérer la documentation
+await client.search('installation'); // Recherche
+await client.download('script.js');  // Téléchargement</code></pre>
       </div>
       
-      <!-- Exemples de code -->
+      <!-- Exemples -->
       <div id="exemples" class="doc-card">
         <h3><i class="bi bi-file-code me-2 text-primary"></i>Exemples de code</h3>
         
-        <h6 class="mt-3">JavaScript / Node.js</h6>
+        <h6 class="mt-3">JavaScript</h6>
         <pre><code>const { DocuTechClient } = require('docutech-sdk');
 
 const client = new DocuTechClient({ apiKey: process.env.API_KEY });
 
 async function main() {
-  const guide = await client.getDocs('getting-started');
-  console.log(guide);
-}
-
-main();</code></pre>
+  const docs = await client.getDocs('getting-started');
+  console.log(docs);
+}</code></pre>
 
         <h6 class="mt-3">Python</h6>
         <pre><code>from docutech import Client
 
 client = Client(api_key="your-api-key")
-guide = client.get_docs("getting-started")
-print(guide)</code></pre>
-
-        <h6 class="mt-3">cURL</h6>
-        <pre><code>curl -X GET https://api.docutech.io/v1/docs/guide \
-  -H "Authorization: Bearer your-api-key"</code></pre>
+docs = client.get_docs("getting-started")
+print(docs)</code></pre>
       </div>
       
-      <!-- Configuration matérielle -->
+      <!-- CAPTURES D'ÉCRAN (FAUSSES MAIS RÉALISTES) -->
+      <div id="captures" class="doc-card">
+        <h3><i class="bi bi-images me-2 text-primary"></i>Captures d'écran</h3>
+        <p class="text-muted">Aperçu de l'interface d'administration et du tableau de bord</p>
+        
+        <div class="row g-4 mt-2">
+          <!-- Capture 1 : Dashboard -->
+          <div class="col-md-6">
+            <div class="screenshot-card">
+              <div class="screenshot-header">
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <span style="flex:1; text-align:center; color:#94a3b8; font-size:0.7rem;">Dashboard DocuTech</span>
+              </div>
+              <div class="screenshot-content">
+                <div class="fake-ui">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div style="font-weight: 700; color:#1e293b;">📊 Statistiques</div>
+                    <div style="background:#e2e8f0; padding:0.2rem 0.6rem; border-radius:1rem; font-size:0.7rem;">Semaine dernière</div>
+                  </div>
+                  <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="flex:1; background:#eef2ff; padding:0.8rem; border-radius:0.75rem; text-align:center;">
+                      <div style="font-size:1.5rem; font-weight:800; color:#2563eb;">1,234</div>
+                      <div style="font-size:0.7rem; color:#64748b;">Documents</div>
+                    </div>
+                    <div style="flex:1; background:#eef2ff; padding:0.8rem; border-radius:0.75rem; text-align:center;">
+                      <div style="font-size:1.5rem; font-weight:800; color:#2563eb;">89</div>
+                      <div style="font-size:0.7rem; color:#64748b;">Téléchargements</div>
+                    </div>
+                  </div>
+                  <div style="background:#f1f5f9; border-radius:0.5rem; padding:0.5rem; text-align:center; font-size:0.7rem; color:#64748b;">
+                    📈 +12% comparé au mois dernier
+                  </div>
+                </div>
+              </div>
+              <div class="p-2 text-center small text-muted border-top">Tableau de bord principal</div>
+            </div>
+          </div>
+          
+          <!-- Capture 2 : Éditeur de code -->
+          <div class="col-md-6">
+            <div class="screenshot-card">
+              <div class="screenshot-header">
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <span style="flex:1; text-align:center; color:#94a3b8; font-size:0.7rem;">Éditeur de code</span>
+              </div>
+              <div class="screenshot-content">
+                <div style="background:#0f172a; border-radius:0.75rem; padding:1rem;">
+                  <div style="color:#7c3aed; font-family:monospace; font-size:0.7rem;">1  const client = new DocuTechClient({</div>
+                  <div style="color:#7c3aed; font-family:monospace; font-size:0.7rem; padding-left:1rem;">2    apiKey: '••••••••'</div>
+                  <div style="color:#7c3aed; font-family:monospace; font-size:0.7rem;">3  });</div>
+                  <div style="color:#10b981; font-family:monospace; font-size:0.7rem; margin-top:0.5rem;">4  // Prêt à utiliser !</div>
+                </div>
+              </div>
+              <div class="p-2 text-center small text-muted border-top">Éditeur avec coloration syntaxique</div>
+            </div>
+          </div>
+          
+          <!-- Capture 3 : Configuration matérielle -->
+          <div class="col-md-6">
+            <div class="screenshot-card">
+              <div class="screenshot-header">
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <span style="flex:1; text-align:center; color:#94a3b8; font-size:0.7rem;">Hardware Config</span>
+              </div>
+              <div class="screenshot-content">
+                <div class="fake-ui">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;">
+                    <i class="bi bi-motherboard" style="color:#2563eb;"></i>
+                    <span style="font-weight:600; font-size:0.8rem;">Périphériques détectés</span>
+                  </div>
+                  <div style="background:#eef2ff; border-radius:0.5rem; padding:0.5rem;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>I2C</span><span>✅ 2 périphériques</span></div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>GPIO</span><span>✅ 6 pins actifs</span></div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>Réseau</span><span>🌐 192.168.1.100</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-2 text-center small text-muted border-top">Détection matérielle automatique</div>
+            </div>
+          </div>
+          
+          <!-- Capture 4 : API Console -->
+          <div class="col-md-6">
+            <div class="screenshot-card">
+              <div class="screenshot-header">
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <div class="screenshot-dot"></div>
+                <span style="flex:1; text-align:center; color:#94a3b8; font-size:0.7rem;">API Console</span>
+              </div>
+              <div class="screenshot-content">
+                <div class="fake-ui">
+                  <div style="background:#e2e8f0; border-radius:0.5rem; padding:0.5rem; font-size:0.7rem; font-family:monospace;">
+                    <span style="color:#10b981;">GET</span> /api/v1/docs/guide
+                  </div>
+                  <div style="margin-top:0.8rem; background:#f1f5f9; border-radius:0.5rem; padding:0.5rem; font-size:0.65rem;">
+                    { "status": 200, "data": { "title": "Guide DocuTech", "content": "..." } }
+                  </div>
+                </div>
+              </div>
+              <div class="p-2 text-center small text-muted border-top">Console API interactive</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hardware -->
       <div id="hardware" class="doc-card">
         <h3><i class="bi bi-motherboard me-2 text-primary"></i>Configuration matérielle</h3>
-        <p>Pour les projets embarqués (Raspberry Pi, Arduino, ESP32) :</p>
         <pre><code># Détection automatique I2C/GPIO
 python hardware_setup.py
 
-# Génère hardware_config.json
+# Sortie générée dans hardware_config.json
 {
   "i2c": { "devices": ["0x48", "0x3c"] },
-  "gpio": { "pins": [17, 18, 22] },
-  "network": { "ip": "192.168.1.100" }
+  "gpio": { "pins": [17, 18, 22, 23, 24, 25] },
+  "network": { "ip": "192.168.1.100", "internet": true }
 }</code></pre>
       </div>
       
       <!-- Téléchargements -->
       <div id="telechargements">
-        <h3 class="mb-3"><i class="bi bi-cloud-arrow-down-fill me-2 text-primary"></i>Ressources téléchargeables</h3>
+        <h3 class="mb-3"><i class="bi bi-cloud-arrow-down-fill me-2 text-primary"></i>Ressources</h3>
         <div class="download-grid">
           <div class="row g-3">
             <div class="col-md-4">
               <div class="download-item text-center">
                 <i class="bi bi-filetype-js fs-1 text-primary"></i>
-                <h6 class="mt-2 mb-1">install.js</h6>
+                <h6 class="mt-2">install.js</h6>
                 <small class="text-muted d-block mb-2">Script d'installation</small>
                 <button class="btn-download" onclick="downloadInstallJS()"><i class="bi bi-download"></i> Télécharger</button>
               </div>
@@ -249,214 +354,8 @@ python hardware_setup.py
             <div class="col-md-4">
               <div class="download-item text-center">
                 <i class="bi bi-filetype-py fs-1 text-success"></i>
-                <h6 class="mt-2 mb-1">hardware_setup.py</h6>
-                <small class="text-muted d-block mb-2">Config matérielle</small>
+                <h6 class="mt-2">hardware_setup.py</h6>
+                <small class="text-muted d-block mb-2">Configuration matérielle</small>
                 <button class="btn-download" onclick="downloadHardwarePY()"><i class="bi bi-download"></i> Télécharger</button>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="download-item text-center">
-                <i class="bi bi-filetype-pdf fs-1 text-danger"></i>
-                <h6 class="mt-2 mb-1">guide_complet.pdf</h6>
-                <small class="text-muted d-block mb-2">Documentation PDF</small>
-                <button class="btn-download" onclick="downloadPDF()"><i class="bi bi-download"></i> Télécharger</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container text-center">
-    <p class="mb-2">© 2026 DocuTech – Documentation technique</p>
-    <p class="small">
-      <a href="#" class="text-decoration-none text-secondary mx-2">GitHub</a> •
-      <a href="#" class="text-decoration-none text-secondary mx-2">Licence MIT</a> •
-      <a href="#" class="text-decoration-none text-secondary mx-2">Contact</a>
-    </p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-// ==================== SCRIPTS DE TÉLÉCHARGEMENT RÉELS ====================
-
-function downloadInstallJS() {
-  const content = `#!/usr/bin/env node
-// DocuTech - Script d'installation automatique
-const fs = require('fs');
-const { execSync } = require('child_process');
-const readline = require('readline');
-
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-const ask = q => new Promise(r => rl.question(q, r));
-
-async function main() {
-  console.log('\\x1b[36m🚀 DocuTech - Installation v2.0\\x1b[0m');
-  console.log('='.repeat(50));
-  
-  const project = (await ask('📁 Nom du projet (defaut: docutech) : ')) || 'docutech';
-  
-  if (!fs.existsSync(project)) fs.mkdirSync(project);
-  process.chdir(project);
-  
-  console.log('📦 Création des fichiers...');
-  const pkg = { 
-    name: project, 
-    version: '1.0.0', 
-    scripts: { start: 'node server.js' }, 
-    dependencies: { express: '^4.18.2', cors: '^2.8.5' } 
-  };
-  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
-  fs.writeFileSync('server.js', \`const express=require('express');const app=express();app.get('/',(r,q)=>q.send('DocuTech OK'));app.listen(3000,()=>console.log('✅ Serveur sur http://localhost:3000'));\`);
-  fs.mkdirSync('public', { recursive: true });
-  
-  console.log('📦 Installation des dépendances...');
-  execSync('npm install', { stdio: 'inherit' });
-  
-  console.log('\\x1b[32m✅ Installation terminée !\\x1b[0m');
-  console.log('👉 Lancez : npm start');
-  rl.close();
-}
-
-main().catch(console.error);`;
-  download(content, 'install.js', 'application/javascript');
-}
-
-function downloadHardwarePY() {
-  const content = `#!/usr/bin/env python3
-# DocuTech - Configuration matérielle (I2C, GPIO, réseau)
-import sys, json, platform, socket
-from datetime import datetime
-
-def main():
-    print("🔧 DocuTech - Configuration matérielle")
-    print("=" * 50)
-    
-    system = platform.system()
-    is_raspberry = False
-    try:
-        with open('/proc/device-tree/model', 'r') as f:
-            is_raspberry = 'Raspberry' in f.read()
-    except:
-        pass
-    
-    print(f"📟 Système : {system} (Raspberry: {is_raspberry})")
-    
-    # Détection I2C
-    i2c_devices = []
-    if system == 'Linux':
-        try:
-            import board
-            import busio
-            i2c = busio.I2C(board.SCL, board.SDA)
-            devices = i2c.scan()
-            i2c_devices = [hex(d) for d in devices]
-            print(f"✓ I2C : {i2c_devices}")
-        except ImportError:
-            print("⚠ I2C : pip install adafruit-blinka requis")
-        except Exception as e:
-            print(f"⚠ I2C : {e}")
-    
-    # Détection GPIO
-    gpio_pins = []
-    if is_raspberry:
-        try:
-            import RPi.GPIO as GPIO
-            GPIO.setmode(GPIO.BCM)
-            test_pins = [17, 18, 22, 23, 24, 25]
-            for pin in test_pins:
-                try:
-                    GPIO.setup(pin, GPIO.OUT)
-                    GPIO.output(pin, GPIO.LOW)
-                    gpio_pins.append(pin)
-                except:
-                    pass
-            GPIO.cleanup()
-            print(f"✓ GPIO : {gpio_pins}")
-        except ImportError:
-            print("⚠ GPIO : RPi.GPIO non disponible")
-    
-    # Détection réseau
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))
-        local_ip = s.getsockname()[0]
-        s.close()
-        socket.create_connection(("8.8.8.8", 53), timeout=2)
-        internet = True
-        print(f"✓ Réseau : IP={local_ip}, Internet=OK")
-    except:
-        local_ip, internet = None, False
-        print("⚠ Réseau : non connecté")
-    
-    config = {
-        "docutech_hardware": {
-            "version": "2.0",
-            "generated_at": datetime.now().isoformat(),
-            "system": {"os": system, "is_raspberry": is_raspberry},
-            "i2c": {"available": len(i2c_devices) > 0, "devices": i2c_devices},
-            "gpio": {"available": len(gpio_pins) > 0, "pins": gpio_pins},
-            "network": {"ip": local_ip, "internet": internet}
-        }
-    }
-    
-    with open("hardware_config.json", "w") as f:
-        json.dump(config, f, indent=2)
-    
-    print("\\n✅ Configuration sauvegardée dans hardware_config.json")
-
-if __name__ == "__main__":
-    main()`;
-  download(content, 'hardware_setup.py', 'text/x-python');
-}
-
-function downloadPDF() {
-  const content = `%PDF-1.4
-1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
-2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
-3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >> endobj
-4 0 obj << /Length 350 >> stream
-BT /F1 24 Tf 100 750 Td (DocuTech - Documentation Complete) Tj ET
-BT /F1 16 Tf 100 700 Td (Guide d'utilisation) Tj ET
-BT /F1 12 Tf 100 670 Td (1. Installation : node install.js) Tj ET
-BT /F1 12 Tf 100 640 Td (2. Configuration materielle : python hardware_setup.py) Tj ET
-BT /F1 12 Tf 100 610 Td (3. Demarrage du serveur : npm start) Tj ET
-BT /F1 12 Tf 100 580 Td (4. API Endpoint : https://api.docutech.io/v1) Tj ET
-BT /F1 16 Tf 100 520 Td (Support) Tj ET
-BT /F1 12 Tf 100 490 Td (GitHub: https://github.com/ravietech/docutech) Tj ET
-BT /F1 12 Tf 100 460 Td (Email: support@docutech.io) Tj ET
-endstream endobj
-xref 0 5 0000000000 65535 f 0000000009 00000 n 0000000058 00000 n 0000000115 00000 n 0000000190 00000 n
-trailer << /Size 5 /Root 1 0 R >> startxref 550 %%EOF`;
-  download(content, 'docutech_guide.pdf', 'application/pdf');
-}
-
-function download(content, filename, mime) {
-  const blob = new Blob([content], { type: mime });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-// Scroll fluide
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-</script>
-</body>
-</html>
